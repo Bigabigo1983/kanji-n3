@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>欲 — desire / want | Kanji N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1A1F40;font-family:"Noto Sans JP","Helvetica Neue",sans-serif;min-height:100vh}
+.header{background:#2B3261;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.header-kanji{font-size:2.4rem;font-weight:900;color:#FFF6E9;line-height:1}
+.header-meta{text-align:right;color:#b8bdd0;font-size:.85rem}
+.header-group{font-size:.7rem;opacity:.75;margin-top:3px}
+.header-meta a{color:#b8bdd0;text-decoration:none}
+.jlpt{display:inline-block;background:rgba(255,255,255,.15);border-radius:12px;padding:2px 8px;font-size:.75rem;margin-left:4px}
+.lang-bar{background:#2B3261;padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #b8bdd0;background:transparent;color:#b8bdd0;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:#FFF6E9;color:#2B3261;border-color:#FFF6E9;font-weight:700}
+.lang-btn:hover:not(.active){border-color:#FFF6E9;color:#FFF6E9}
+.content{max-width:480px;margin:0 auto;padding:16px}
+.core-meaning{text-align:center;font-size:1.2rem;font-weight:900;color:#FFF6E9;margin-bottom:14px;letter-spacing:.02em}
+.cm-quote{font-weight:400;opacity:.5;font-size:1rem}
+.so-section{margin-bottom:18px}
+.so-label{font-size:.72rem;letter-spacing:.08em;color:#b8bdd0;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.so-wrap{background:#FFF6E9;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.so-video-box{width:100%;aspect-ratio:1/1;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.so-controls{display:flex;gap:8px}
+.so-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .15s;font-family:inherit}
+.so-btn.play,.so-btn.pause{background:#2B3261;color:#FFF6E9}
+.so-btn.replay{background:#FFF6E9;color:#2B3261;border:1.5px solid #2B3261}
+.so-btn:hover{opacity:.85}
+.stroke{stroke:#2B3261;stroke-width:5.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ksv.paused .stroke{animation-play-state:paused!important}
+.card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid transparent}
+.on-card{border-color:#2B3261}
+.ex-card,.note-card{border-color:#EDE5D5}
+.card-lang-label{font-size:.7rem;color:#888;margin-bottom:8px}
+.card-reading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:8px;margin-bottom:14px}
+.reading-col{flex:1 1 auto;min-width:0}
+.reading-value{font-size:2rem;font-weight:900;color:#2B3261;overflow-wrap:break-word;line-height:1.3}
+.reading-rom{font-size:.95rem;font-weight:500;opacity:.7;font-style:italic}
+.okuri{opacity:.45;font-weight:700}
+.reading-value.multi{font-size:1.6rem}
+.ref-line{font-size:.75rem;color:#999;margin-top:4px}
+.listen-btn{display:flex;align-items:center;gap:6px;background:#2B3261;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0}
+.listen-btn:hover{opacity:.85}
+.section-label{font-size:.7rem;color:#888;margin-bottom:5px}
+.vrow{padding:8px 0;border-top:1px solid #f0ebe0}
+.section-label + .vrow,.card-lang-label + .vrow{border-top:none;padding-top:2px}
+.word-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.word-text{font-size:1.25rem;font-weight:800;color:#1A1F40}
+.ks{font-weight:800}.on-s{color:#2B3261}.ko{color:#b8bdd0;font-weight:400}
+.word-listen-btn{display:flex;align-items:center;gap:4px;background:#806B50;color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-family:inherit;margin-left:auto}
+.word-listen-btn:hover{opacity:.85}
+.word-romaji{font-size:.82rem;font-style:italic;color:#2B3261;margin-bottom:2px}
+.word-romaji strong{font-weight:800}
+.word-meaning{font-size:.88rem;color:#333}
+.example-box{background:#FFF6E9;border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:10px}
+.example-box:first-of-type{margin-top:0}
+.example-text{flex:1}.example-ja{font-size:1rem;font-weight:700;color:#1A1F40;margin-bottom:4px}
+.st{color:#2B3261;text-decoration:underline;text-decoration-color:#806B50;text-underline-offset:3px}
+.example-rom{font-size:.78rem;font-style:italic;color:#806B50;margin-bottom:4px}
+.example-tr{font-size:.82rem;color:#333}
+.example-listen{background:#806B50;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#fff;font-size:.85rem}
+.example-listen:hover{opacity:.85}
+.note-text{font-size:.86rem;color:#333;line-height:1.65}
+.footer{text-align:center;color:#b8bdd0;font-size:.7rem;padding:20px 16px}
+.footer a{color:#b8bdd0}
+body.ar .card{direction:rtl;text-align:right}
+body.ar .card-reading,body.ar .word-row,body.ar .example-box{flex-direction:row-reverse}
+body.ar .example-text{text-align:right}
+body.ar .word-listen-btn{margin-left:0;margin-right:auto}
+body.ar .note-text[dir=ltr]{text-align:left;direction:ltr}
+body.ar .example-ja,body.ar .example-rom,body.ar .word-romaji,body.ar .reading-value,body.ar .word-text,body.ar .ref-line{direction:ltr;unicode-bidi:isolate;text-align:right}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-kanji">欲</div>
+  <div class="header-meta">11 strokes <span class="jlpt">JLPT N3</span><div class="header-group"><a href="../index.html">G2 · Feelings, Personality, Wishes &amp; Habits</a></div></div>
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="switchLang('es',this)">ES</button>
+  <button class="lang-btn" onclick="switchLang('zh',this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="switchLang('ar',this)">العربية</button>
+</div>
+<div class="content">
+  <div class="core-meaning"><span class="cm-quote">"</span><span id="cm-text">desire / want</span><span class="cm-quote">"</span></div>
+  <div class="so-section">
+    <div class="so-label" id="lbl-so">STROKE ORDER</div>
+    <div class="so-wrap">
+      <div class="so-video-box"><style id="anim-css">.s0{stroke-dasharray:60;stroke-dashoffset:60;animation:drw0 0.60s ease-in-out 0.00s forwards}@keyframes drw0{to{stroke-dashoffset:0}}.s1{stroke-dasharray:60;stroke-dashoffset:60;animation:drw1 0.60s ease-in-out 0.72s forwards}@keyframes drw1{to{stroke-dashoffset:0}}.s2{stroke-dasharray:60;stroke-dashoffset:60;animation:drw2 0.60s ease-in-out 1.44s forwards}@keyframes drw2{to{stroke-dashoffset:0}}.s3{stroke-dasharray:60;stroke-dashoffset:60;animation:drw3 0.60s ease-in-out 2.16s forwards}@keyframes drw3{to{stroke-dashoffset:0}}.s4{stroke-dasharray:60;stroke-dashoffset:60;animation:drw4 0.60s ease-in-out 2.88s forwards}@keyframes drw4{to{stroke-dashoffset:0}}.s5{stroke-dasharray:60;stroke-dashoffset:60;animation:drw5 0.60s ease-in-out 3.60s forwards}@keyframes drw5{to{stroke-dashoffset:0}}.s6{stroke-dasharray:60;stroke-dashoffset:60;animation:drw6 0.60s ease-in-out 4.32s forwards}@keyframes drw6{to{stroke-dashoffset:0}}.s7{stroke-dasharray:60;stroke-dashoffset:60;animation:drw7 0.60s ease-in-out 5.04s forwards}@keyframes drw7{to{stroke-dashoffset:0}}.s8{stroke-dasharray:60;stroke-dashoffset:60;animation:drw8 0.60s ease-in-out 5.76s forwards}@keyframes drw8{to{stroke-dashoffset:0}}.s9{stroke-dasharray:65;stroke-dashoffset:65;animation:drw9 0.60s ease-in-out 6.48s forwards}@keyframes drw9{to{stroke-dashoffset:0}}.s10{stroke-dasharray:60;stroke-dashoffset:60;animation:drw10 0.60s ease-in-out 7.20s forwards}@keyframes drw10{to{stroke-dashoffset:0}}</style>
+<svg id="ksv" viewBox="0 0 109 109" style="width:100%;height:100%">
+  <rect width="109" height="109" fill="#fff"/>
+  <path d="M24.85,23.98c0.07,0.84-0.25,1.65-0.63,2.38c-1.92,3.74-6.1,8.39-11.9,13.04" class="stroke s0"/>
+<path d="M40.41,23.85c4.23,2.54,8.68,6.91,10.13,9.51" class="stroke s1"/>
+<path d="M33.69,37.99c0.17,1.6-0.26,3.06-1.16,4.42c-4.5,6.74-12.4,15.22-22.65,21.53" class="stroke s2"/>
+<path d="M35.3,44.27c4.37,2.35,9.36,5.25,12.93,9.52" class="stroke s3"/>
+<path d="M17.48,66.65c0.69,0.68,1.14,1.6,1.36,2.73c0.85,4.48,1.7,9.8,2.36,15.31c0.16,1.33,0.31,2.6,0.44,3.76" class="stroke s4"/>
+<path d="M19.45,68.46c7.66-1.54,16.62-3.38,22.18-4.29c3.2-0.52,4.95,0.53,4.08,3.89c-1.21,4.67-2.54,8.54-3.64,14.49" class="stroke s5"/>
+<path d="M22.47,85.56c5.51-0.41,11.57-1.1,17.53-1.77c1.49-0.17,3.03-0.33,4.62-0.49" class="stroke s6"/>
+<path d="M65.92,20.25c0.07,1.47,0.07,2.66-0.44,4.06c-2.61,7.19-5.61,14.82-11.23,23.95" class="stroke s7"/>
+<path d="M62.17,40.54c1.53,0.43,3.42,0.04,4.91-0.38c3.61-1.01,13.74-4.29,19.1-6c5.53-1.76,2.32,4.71-2.71,10.14" class="stroke s8"/>
+<path d="M66.42,49.91c0.58,0.97,0.87,2.5,0.63,3.91C65.25,64.5,60.75,81.88,45.23,91" class="stroke s9"/>
+<path d="M66.83,58.93c5.12,6.09,14.06,18.06,20.93,25.42c2.12,2.27,4.74,4.65,7.01,5.84" class="stroke s10"/>
+
+</svg></div>
+      <div class="so-controls">
+        <button class="so-btn play"  onclick="soPlay()"   id="btn-play">▶ Play</button>
+        <button class="so-btn pause" onclick="soPause()"  id="btn-pause">⏸ Pause</button>
+        <button class="so-btn replay" onclick="soReplay()"id="btn-replay">↺ Replay</button>
+      </div>
+    </div>
+  </div>
+<div class="card on-card" data-card="1" data-type="ON">
+    <div class="card-lang-label lbl-on">音読み · On reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">ヨク <span class="reading-rom">(yoku)</span></div></div>
+      <button class="listen-btn" data-tts="ヨク" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="食欲">
+      <div class="word-row"><span class="word-text"><span class="ko">食</span><span class="ks on-s">欲</span></span>
+        <button class="word-listen-btn" data-tts="食欲" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><span class="ko">shoku</span><strong class="on-s">yoku</strong></div>
+      <div class="word-meaning" id="vm-c1w0">appetite</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">暑い日は食<span class="st">欲</span>がなくなります。</div>
+        <div class="example-rom">Atsui hi wa shokuyoku ga nakunarimasu.</div>
+        <div class="example-tr" id="sent-c1">I lose my appetite on hot days.</div></div>
+      <button class="example-listen" data-tts="暑い日は食欲がなくなります。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card on-card" data-card="2" data-type="KUN">
+    <div class="card-lang-label lbl-kun">訓読み · Kun reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">ほ <span class="reading-rom">(ho)</span></div></div>
+      <button class="listen-btn" data-tts="ほ" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="欲しい">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">欲</span><span class="ko">し</span><span class="ko">い</span></span>
+        <button class="word-listen-btn" data-tts="欲しい" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">ho</strong><span class="ko">shii</span></div>
+      <div class="word-meaning" id="vm-c2w0">want / desire</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">新しい辞書が<span class="st">欲</span>しいです。</div>
+        <div class="example-rom">Atarashii jisho ga hoshii desu.</div>
+        <div class="example-tr" id="sent-c2">I want a new dictionary.</div></div>
+      <button class="example-listen" data-tts="新しい辞書が欲しいです。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card note-card">
+    <div class="card-lang-label lbl-note">ポイント · Notes</div>
+    <div class="note-text" id="note-text">欲しい（ほしい） uses が for the thing wanted, as in 辞書が欲しい. It normally expresses the speaker&#x27;s own desire; another person&#x27;s desire is not directly stated with plain 欲しい.</div>
+  </div>
+
+</div>
+<div class="footer" id="footer-txt">Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio</div>
+<script>
+const MEANING={"en": "desire / want", "es": "deseo / querer", "zh": "欲望 / 想要", "ko": "욕구 / 원하다", "ar": "رغبة / يريد"},VOC={"c1w0": {"en": "appetite", "es": "apetito", "zh": "食欲", "ko": "식욕", "ar": "شهية"}, "c2w0": {"en": "want / desire", "es": "querer / desear", "zh": "想要", "ko": "갖고 싶다 / 원하다", "ar": "يريد / يرغب في"}},SEN={"c1": {"en": "I lose my appetite on hot days.", "es": "Pierdo el apetito en los días calurosos.", "zh": "天气热的时候我会没有食欲。", "ko": "더운 날에는 식욕이 없어집니다.", "ar": "أفقد شهيتي في الأيام الحارّة."}, "c2": {"en": "I want a new dictionary.", "es": "Quiero un diccionario nuevo.", "zh": "我想要一本新词典。", "ko": "새 사전을 갖고 싶습니다.", "ar": "أريد قاموسًا جديدًا."}},NOTE={"en": "欲しい（ほしい） uses が for the thing wanted, as in 辞書が欲しい. It normally expresses the speaker's own desire; another person's desire is not directly stated with plain 欲しい.", "es": "欲しい（ほしい） usa が para marcar lo que se desea, como en 辞書が欲しい. Normalmente expresa el deseo del propio hablante; el deseo de otra persona no se expresa directamente con 欲しい en su forma simple.", "zh": "欲しい（ほしい）用が来标示想要的东西，例如辞書が欲しい。它通常表达说话人自己的愿望；别人的愿望一般不直接用单纯的欲しい来表达。", "ko": "欲しい(ほしい)는 辞書が欲しい처럼 원하는 대상에 が를 씁니다. 보통 말하는 사람 자신의 바람을 나타내며, 다른 사람의 바람은 그냥 欲しい만으로 직접 말하지 않습니다.", "ar": "يُستخدم مع 欲しい（ほしい） الأداة が للدلالة على الشيء المرغوب فيه، كما في 辞書が欲しい. وهو يعبّر عادةً عن رغبة المتكلم نفسه؛ أما رغبة شخص آخر فلا يُعبَّر عنها مباشرةً بـ 欲しい في صيغتها البسيطة."};
+const L={
+  so:{"en":"STROKE ORDER","es":"ORDEN DE TRAZOS","zh":"笔画顺序","ko":"획순","ar":"ترتيب الضربات"},
+  play:{"en":"▶ Play","es":"▶ Reproducir","zh":"▶ 播放","ko":"▶ 재생","ar":"▶ تشغيل"},
+  pause:{"en":"⏸ Pause","es":"⏸ Pausar","zh":"⏸ 暂停","ko":"⏸ 일시정지","ar":"⏸ إيقاف"},
+  replay:{"en":"↺ Replay","es":"↺ Repetir","zh":"↺ 重播","ko":"↺ 다시보기","ar":"↺ إعادة"},
+  on_lbl:{"en":"音読み · On reading","es":"音読み · Lectura On","zh":"音読み · 音读","ko":"音読み · 온독","ar":"قراءة أون · 音読み"},
+  kun_lbl:{"en":"訓読み · Kun reading","es":"訓読み · Lectura Kun","zh":"訓読み · 训读","ko":"訓読み · 훈독","ar":"قراءة كون · 訓読み"},
+  word:{"en":"単語 · Word","es":"単語 · Palabra","zh":"単語 · 单词","ko":"単語 · 단어","ar":"كلمة · 単語"},
+  more:{"en":"More Examples","es":"Más ejemplos","zh":"更多例子","ko":"더 많은 예","ar":"المزيد من الأمثلة"},
+  ex:{"en":"例文 · Example","es":"例文 · Oración","zh":"例文 · 例句","ko":"例文 · 예문","ar":"مثال · 例文"},
+  note:{"en":"ポイント · Notes","es":"ポイント · Notas","zh":"ポイント · 要点","ko":"ポイント · 포인트","ar":"ملاحظات · ポイント"},
+  listen:{"en":"🔊 Listen","es":"🔊 Escuchar","zh":"🔊 听","ko":"🔊 듣기","ar":"🔊 استمع"},
+  footer:{"en":"Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio","es":"Datos de trazos: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Creado con ❤ por Between Line Studio","zh":"笔画数据：KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 制作","ko":"획 데이터: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 제작","ar":"بيانات الضربات: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · صُنع بـ ❤ من Between Line Studio"}
+};
+const $=id=>document.getElementById(id);
+function set(id,v){const el=$(id);if(el&&v!=null)el.textContent=v;}
+function setAll(sel,v){document.querySelectorAll(sel).forEach(el=>{if(v!=null)el.textContent=v;});}
+function switchLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className=lang==='ar'?'ar':'';
+  set('cm-text',MEANING[lang]);
+  for(const k in VOC) set('vm-'+k,VOC[k][lang]);
+  for(const k in SEN) set('sent-'+k,SEN[k][lang]);
+  {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
+      el.innerHTML=t.innerHTML.replace(/[\u3040-\u30ff\u4e00-\u9fff～ー]+(?:\s*[+＋]\s*[\u3040-\u30ff\u4e00-\u9fff～ー]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>'); }
+    else el.textContent=NOTE[lang]; }}
+  set('lbl-so',L.so[lang]);
+  set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
+  setAll('.lbl-on',L.on_lbl[lang]); setAll('.lbl-kun',L.kun_lbl[lang]);
+  setAll('.lbl-more',L.more[lang]); setAll('.lbl-word',L.word[lang]);
+  setAll('.lbl-ex',L.ex[lang]); setAll('.lbl-note',L.note[lang]);
+  setAll('.lbl-listen',L.listen[lang]);
+  set('footer-txt',L.footer[lang]);
+}
+function speak(t){
+  if(!t||t==='—'||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('ja'));
+    if(v)u.voice=v; speechSynthesis.speak(u);};
+  speechSynthesis.getVoices().length?go():speechSynthesis.addEventListener('voiceschanged',go,{once:true});
+}
+const getSVG=()=>$('ksv');
+function soPlay(){if(getSVG())getSVG().classList.remove('paused');}
+function soPause(){if(getSVG())getSVG().classList.add('paused');}
+function soReplay(){
+  const s=getSVG(); if(!s)return;
+  const c=s.cloneNode(true); s.parentNode.replaceChild(c,s); c.id='ksv';
+  const css=$('anim-css'); if(css){const c2=css.cloneNode(true);css.parentNode.replaceChild(c2,css);c2.id='anim-css';}
+}
+window.addEventListener('load',()=>{if(getSVG())getSVG().classList.remove('paused');});
+</script>
+</body>
+</html>

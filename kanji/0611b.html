@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>愛 — love / affection | Kanji N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1A1F40;font-family:"Noto Sans JP","Helvetica Neue",sans-serif;min-height:100vh}
+.header{background:#2B3261;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.header-kanji{font-size:2.4rem;font-weight:900;color:#FFF6E9;line-height:1}
+.header-meta{text-align:right;color:#b8bdd0;font-size:.85rem}
+.header-group{font-size:.7rem;opacity:.75;margin-top:3px}
+.header-meta a{color:#b8bdd0;text-decoration:none}
+.jlpt{display:inline-block;background:rgba(255,255,255,.15);border-radius:12px;padding:2px 8px;font-size:.75rem;margin-left:4px}
+.lang-bar{background:#2B3261;padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #b8bdd0;background:transparent;color:#b8bdd0;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:#FFF6E9;color:#2B3261;border-color:#FFF6E9;font-weight:700}
+.lang-btn:hover:not(.active){border-color:#FFF6E9;color:#FFF6E9}
+.content{max-width:480px;margin:0 auto;padding:16px}
+.core-meaning{text-align:center;font-size:1.2rem;font-weight:900;color:#FFF6E9;margin-bottom:14px;letter-spacing:.02em}
+.cm-quote{font-weight:400;opacity:.5;font-size:1rem}
+.so-section{margin-bottom:18px}
+.so-label{font-size:.72rem;letter-spacing:.08em;color:#b8bdd0;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.so-wrap{background:#FFF6E9;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.so-video-box{width:100%;aspect-ratio:1/1;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.so-controls{display:flex;gap:8px}
+.so-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .15s;font-family:inherit}
+.so-btn.play,.so-btn.pause{background:#2B3261;color:#FFF6E9}
+.so-btn.replay{background:#FFF6E9;color:#2B3261;border:1.5px solid #2B3261}
+.so-btn:hover{opacity:.85}
+.stroke{stroke:#2B3261;stroke-width:5.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ksv.paused .stroke{animation-play-state:paused!important}
+.card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid transparent}
+.on-card{border-color:#2B3261}
+.ex-card,.note-card{border-color:#EDE5D5}
+.card-lang-label{font-size:.7rem;color:#888;margin-bottom:8px}
+.card-reading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:8px;margin-bottom:14px}
+.reading-col{flex:1 1 auto;min-width:0}
+.reading-value{font-size:2rem;font-weight:900;color:#2B3261;overflow-wrap:break-word;line-height:1.3}
+.reading-rom{font-size:.95rem;font-weight:500;opacity:.7;font-style:italic}
+.okuri{opacity:.45;font-weight:700}
+.reading-value.multi{font-size:1.6rem}
+.ref-line{font-size:.75rem;color:#999;margin-top:4px}
+.listen-btn{display:flex;align-items:center;gap:6px;background:#2B3261;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0}
+.listen-btn:hover{opacity:.85}
+.section-label{font-size:.7rem;color:#888;margin-bottom:5px}
+.vrow{padding:8px 0;border-top:1px solid #f0ebe0}
+.section-label + .vrow,.card-lang-label + .vrow{border-top:none;padding-top:2px}
+.word-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.word-text{font-size:1.25rem;font-weight:800;color:#1A1F40}
+.ks{font-weight:800}.on-s{color:#2B3261}.ko{color:#b8bdd0;font-weight:400}
+.word-listen-btn{display:flex;align-items:center;gap:4px;background:#806B50;color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-family:inherit;margin-left:auto}
+.word-listen-btn:hover{opacity:.85}
+.word-romaji{font-size:.82rem;font-style:italic;color:#2B3261;margin-bottom:2px}
+.word-romaji strong{font-weight:800}
+.word-meaning{font-size:.88rem;color:#333}
+.example-box{background:#FFF6E9;border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:10px}
+.example-box:first-of-type{margin-top:0}
+.example-text{flex:1}.example-ja{font-size:1rem;font-weight:700;color:#1A1F40;margin-bottom:4px}
+.st{color:#2B3261;text-decoration:underline;text-decoration-color:#806B50;text-underline-offset:3px}
+.example-rom{font-size:.78rem;font-style:italic;color:#806B50;margin-bottom:4px}
+.example-tr{font-size:.82rem;color:#333}
+.example-listen{background:#806B50;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#fff;font-size:.85rem}
+.example-listen:hover{opacity:.85}
+.note-text{font-size:.86rem;color:#333;line-height:1.65}
+.footer{text-align:center;color:#b8bdd0;font-size:.7rem;padding:20px 16px}
+.footer a{color:#b8bdd0}
+body.ar .card{direction:rtl;text-align:right}
+body.ar .card-reading,body.ar .word-row,body.ar .example-box{flex-direction:row-reverse}
+body.ar .example-text{text-align:right}
+body.ar .word-listen-btn{margin-left:0;margin-right:auto}
+body.ar .note-text[dir=ltr]{text-align:left;direction:ltr}
+body.ar .example-ja,body.ar .example-rom,body.ar .word-romaji,body.ar .reading-value,body.ar .word-text,body.ar .ref-line{direction:ltr;unicode-bidi:isolate;text-align:right}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-kanji">愛</div>
+  <div class="header-meta">13 strokes <span class="jlpt">JLPT N3</span><div class="header-group"><a href="../index.html">G2 · Feelings, Personality, Wishes &amp; Habits</a></div></div>
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="switchLang('es',this)">ES</button>
+  <button class="lang-btn" onclick="switchLang('zh',this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="switchLang('ar',this)">العربية</button>
+</div>
+<div class="content">
+  <div class="core-meaning"><span class="cm-quote">"</span><span id="cm-text">love / affection</span><span class="cm-quote">"</span></div>
+  <div class="so-section">
+    <div class="so-label" id="lbl-so">STROKE ORDER</div>
+    <div class="so-wrap">
+      <div class="so-video-box"><style id="anim-css">.s0{stroke-dasharray:60;stroke-dashoffset:60;animation:drw0 0.60s ease-in-out 0.00s forwards}@keyframes drw0{to{stroke-dashoffset:0}}.s1{stroke-dasharray:60;stroke-dashoffset:60;animation:drw1 0.60s ease-in-out 0.72s forwards}@keyframes drw1{to{stroke-dashoffset:0}}.s2{stroke-dasharray:60;stroke-dashoffset:60;animation:drw2 0.60s ease-in-out 1.44s forwards}@keyframes drw2{to{stroke-dashoffset:0}}.s3{stroke-dasharray:60;stroke-dashoffset:60;animation:drw3 0.60s ease-in-out 2.16s forwards}@keyframes drw3{to{stroke-dashoffset:0}}.s4{stroke-dasharray:60;stroke-dashoffset:60;animation:drw4 0.60s ease-in-out 2.88s forwards}@keyframes drw4{to{stroke-dashoffset:0}}.s5{stroke-dasharray:109;stroke-dashoffset:109;animation:drw5 0.60s ease-in-out 3.60s forwards}@keyframes drw5{to{stroke-dashoffset:0}}.s6{stroke-dasharray:60;stroke-dashoffset:60;animation:drw6 0.60s ease-in-out 4.32s forwards}@keyframes drw6{to{stroke-dashoffset:0}}.s7{stroke-dasharray:60;stroke-dashoffset:60;animation:drw7 0.60s ease-in-out 5.04s forwards}@keyframes drw7{to{stroke-dashoffset:0}}.s8{stroke-dasharray:60;stroke-dashoffset:60;animation:drw8 0.60s ease-in-out 5.76s forwards}@keyframes drw8{to{stroke-dashoffset:0}}.s9{stroke-dasharray:60;stroke-dashoffset:60;animation:drw9 0.60s ease-in-out 6.48s forwards}@keyframes drw9{to{stroke-dashoffset:0}}.s10{stroke-dasharray:60;stroke-dashoffset:60;animation:drw10 0.60s ease-in-out 7.20s forwards}@keyframes drw10{to{stroke-dashoffset:0}}.s11{stroke-dasharray:119;stroke-dashoffset:119;animation:drw11 0.60s ease-in-out 7.92s forwards}@keyframes drw11{to{stroke-dashoffset:0}}.s12{stroke-dasharray:74;stroke-dashoffset:74;animation:drw12 0.60s ease-in-out 8.64s forwards}@keyframes drw12{to{stroke-dashoffset:0}}</style>
+<svg id="ksv" viewBox="0 0 109 109" style="width:100%;height:100%">
+  <rect width="109" height="109" fill="#fff"/>
+  <path d="M59.38,8.75c-0.21,0.82-0.79,1.64-1.47,2.17c-3.13,2.42-12.8,6.29-23.36,8.97" class="stroke s0"/>
+<path d="M32.12,23.38c3.07,1.58,7.54,5.46,8.31,7.92" class="stroke s1"/>
+<path d="M48.17,22.31c2.68,1.28,6.93,5.28,7.6,7.28" class="stroke s2"/>
+<path d="M75.86,18.37c0.12,0.96-0.09,1.34-0.68,2.14c-2.05,2.78-6.53,6.83-12.91,10.99" class="stroke s3"/>
+<path d="M17.99,38.24c-0.1,3.62-1.86,11.86-2.72,14.08" class="stroke s4"/>
+<path d="M18.36,39.68c18.14-1.93,48.77-6.31,68.68-7.1c13.73-0.55,3.22,6.92-0.68,9.26" class="stroke s5"/>
+<path d="M29.53,46.89c0.19,1.49-1.93,8.08-3.47,10.57" class="stroke s6"/>
+<path d="M39.78,45.13c6.35,9.25,13.6,13,34.98,12.1c5.32-0.22,5.31-2.72,2.4-4.63" class="stroke s7"/>
+<path d="M53.13,42.75c1.49,3,4.72,5.55,5.58,3.13" class="stroke s8"/>
+<path d="M72.97,40.61c3.28,2.14,5.4,3.51,8.03,7.55" class="stroke s9"/>
+<path d="M41.78,60.53c0.11,1.11-0.05,2.08-0.47,3.12c-1.89,4.68-8.45,13.22-17.19,18.6" class="stroke s10"/>
+<path d="M42.58,67.93c0.4,0.03,2.1,0.04,3.24-0.08c5.8-0.6,12.43-2.1,18.93-3.6c3.61-0.83,5.25,1,3.25,4.25c-4.94,8.02-25.58,27.16-48.5,31.22" class="stroke s11"/>
+<path d="M39.1,73.3c8.4,1.32,25.91,14.1,36.4,19.82C78.94,95,82.46,96.47,86.38,97" class="stroke s12"/>
+
+</svg></div>
+      <div class="so-controls">
+        <button class="so-btn play"  onclick="soPlay()"   id="btn-play">▶ Play</button>
+        <button class="so-btn pause" onclick="soPause()"  id="btn-pause">⏸ Pause</button>
+        <button class="so-btn replay" onclick="soReplay()"id="btn-replay">↺ Replay</button>
+      </div>
+    </div>
+  </div>
+<div class="card on-card" data-card="1" data-type="ON">
+    <div class="card-lang-label lbl-on">音読み · On reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">アイ <span class="reading-rom">(ai)</span></div></div>
+      <button class="listen-btn" data-tts="アイ" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="愛情">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">愛</span><span class="ko">情</span></span>
+        <button class="word-listen-btn" data-tts="愛情" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">ai</strong><span class="ko">jou</span></div>
+      <div class="word-meaning" id="vm-c1w0">affection / love</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">家族の<span class="st">愛</span>情を感じます。</div>
+        <div class="example-rom">Kazoku no aijou wo kanjimasu.</div>
+        <div class="example-tr" id="sent-c1">I feel my family&#x27;s love.</div></div>
+      <button class="example-listen" data-tts="家族の愛情を感じます。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card on-card more-card" data-card="2" data-type="MORE_EXAMPLES">
+    <div class="card-lang-label lbl-more">More Examples</div>
+    <div class="vrow" data-word="恋愛">
+      <div class="word-row"><span class="word-text"><span class="ko">恋</span><span class="ks on-s">愛</span></span>
+        <button class="word-listen-btn" data-tts="恋愛" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><span class="ko">ren&#x27;</span><strong class="on-s">ai</strong></div>
+      <div class="word-meaning" id="vm-c2w0">romantic love</div>
+    </div>
+    <div class="vrow" data-word="愛する">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">愛</span><span class="ko">す</span><span class="ko">る</span></span>
+        <button class="word-listen-btn" data-tts="愛する" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">ai</strong><span class="ko">suru</span></div>
+      <div class="word-meaning" id="vm-c2w1">love / care for</div>
+    </div>
+  </div>
+<div class="card note-card">
+    <div class="card-lang-label lbl-note">ポイント · Notes</div>
+    <div class="note-text" id="note-text">In 愛する（あいする）, 愛 keeps the reading あい and する is added; do not treat 愛する as a separate Kun reading. 恋愛（れんあい） refers to romantic love, while 愛情（あいじょう） can also describe affection within a family.</div>
+  </div>
+
+</div>
+<div class="footer" id="footer-txt">Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio</div>
+<script>
+const MEANING={"en": "love / affection", "es": "amor / afecto", "zh": "爱 / 爱情", "ko": "사랑 / 애정", "ar": "حب / مودّة"},VOC={"c1w0": {"en": "affection / love", "es": "afecto / amor", "zh": "爱情 / 关爱", "ko": "애정 / 사랑", "ar": "مودّة / حب"}, "c2w0": {"en": "romantic love", "es": "amor romántico", "zh": "恋爱", "ko": "연애", "ar": "حب رومانسي"}, "c2w1": {"en": "love / care for", "es": "amar / querer", "zh": "爱 / 珍爱", "ko": "사랑하다 / 아끼다", "ar": "يحبّ / يعتني بـ"}},SEN={"c1": {"en": "I feel my family's love.", "es": "Siento el amor de mi familia.", "zh": "我感受到家人的爱。", "ko": "가족의 사랑을 느낍니다.", "ar": "أشعر بحب عائلتي."}},NOTE={"en": "In 愛する（あいする）, 愛 keeps the reading あい and する is added; do not treat 愛する as a separate Kun reading. 恋愛（れんあい） refers to romantic love, while 愛情（あいじょう） can also describe affection within a family.", "es": "En 愛する（あいする）, 愛 mantiene la lectura あい y se le añade する; no trates 愛する como una lectura Kun aparte. 恋愛（れんあい） se refiere al amor romántico, mientras que 愛情（あいじょう） también puede describir el cariño dentro de una familia.", "zh": "在愛する（あいする）中，愛保持读音あい，后面加上する；不要把愛する当作另一个训读。恋愛（れんあい）指浪漫的爱情，而愛情（あいじょう）也可以表示家人之间的感情。", "ko": "愛する(あいする)에서 愛는 읽기 あい를 그대로 유지하고 する가 붙습니다. 愛する를 별도의 훈독으로 보지 마세요. 恋愛(れんあい)는 연애 감정의 사랑을 가리키고, 愛情(あいじょう)는 가족 간의 애정을 나타낼 수도 있습니다.", "ar": "في 愛する（あいする）، يحتفظ 愛 بقراءته あい وتُضاف إليه する؛ فلا تعامل 愛する كقراءة Kun منفصلة. يشير 恋愛（れんあい） إلى الحب الرومانسي، بينما يمكن أن يصف 愛情（あいじょう） أيضًا المودّة داخل العائلة."};
+const L={
+  so:{"en":"STROKE ORDER","es":"ORDEN DE TRAZOS","zh":"笔画顺序","ko":"획순","ar":"ترتيب الضربات"},
+  play:{"en":"▶ Play","es":"▶ Reproducir","zh":"▶ 播放","ko":"▶ 재생","ar":"▶ تشغيل"},
+  pause:{"en":"⏸ Pause","es":"⏸ Pausar","zh":"⏸ 暂停","ko":"⏸ 일시정지","ar":"⏸ إيقاف"},
+  replay:{"en":"↺ Replay","es":"↺ Repetir","zh":"↺ 重播","ko":"↺ 다시보기","ar":"↺ إعادة"},
+  on_lbl:{"en":"音読み · On reading","es":"音読み · Lectura On","zh":"音読み · 音读","ko":"音読み · 온독","ar":"قراءة أون · 音読み"},
+  kun_lbl:{"en":"訓読み · Kun reading","es":"訓読み · Lectura Kun","zh":"訓読み · 训读","ko":"訓読み · 훈독","ar":"قراءة كون · 訓読み"},
+  word:{"en":"単語 · Word","es":"単語 · Palabra","zh":"単語 · 单词","ko":"単語 · 단어","ar":"كلمة · 単語"},
+  more:{"en":"More Examples","es":"Más ejemplos","zh":"更多例子","ko":"더 많은 예","ar":"المزيد من الأمثلة"},
+  ex:{"en":"例文 · Example","es":"例文 · Oración","zh":"例文 · 例句","ko":"例文 · 예문","ar":"مثال · 例文"},
+  note:{"en":"ポイント · Notes","es":"ポイント · Notas","zh":"ポイント · 要点","ko":"ポイント · 포인트","ar":"ملاحظات · ポイント"},
+  listen:{"en":"🔊 Listen","es":"🔊 Escuchar","zh":"🔊 听","ko":"🔊 듣기","ar":"🔊 استمع"},
+  footer:{"en":"Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio","es":"Datos de trazos: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Creado con ❤ por Between Line Studio","zh":"笔画数据：KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 制作","ko":"획 데이터: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 제작","ar":"بيانات الضربات: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · صُنع بـ ❤ من Between Line Studio"}
+};
+const $=id=>document.getElementById(id);
+function set(id,v){const el=$(id);if(el&&v!=null)el.textContent=v;}
+function setAll(sel,v){document.querySelectorAll(sel).forEach(el=>{if(v!=null)el.textContent=v;});}
+function switchLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className=lang==='ar'?'ar':'';
+  set('cm-text',MEANING[lang]);
+  for(const k in VOC) set('vm-'+k,VOC[k][lang]);
+  for(const k in SEN) set('sent-'+k,SEN[k][lang]);
+  {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
+      el.innerHTML=t.innerHTML.replace(/[\u3040-\u30ff\u4e00-\u9fff～ー]+(?:\s*[+＋]\s*[\u3040-\u30ff\u4e00-\u9fff～ー]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>'); }
+    else el.textContent=NOTE[lang]; }}
+  set('lbl-so',L.so[lang]);
+  set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
+  setAll('.lbl-on',L.on_lbl[lang]); setAll('.lbl-kun',L.kun_lbl[lang]);
+  setAll('.lbl-more',L.more[lang]); setAll('.lbl-word',L.word[lang]);
+  setAll('.lbl-ex',L.ex[lang]); setAll('.lbl-note',L.note[lang]);
+  setAll('.lbl-listen',L.listen[lang]);
+  set('footer-txt',L.footer[lang]);
+}
+function speak(t){
+  if(!t||t==='—'||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('ja'));
+    if(v)u.voice=v; speechSynthesis.speak(u);};
+  speechSynthesis.getVoices().length?go():speechSynthesis.addEventListener('voiceschanged',go,{once:true});
+}
+const getSVG=()=>$('ksv');
+function soPlay(){if(getSVG())getSVG().classList.remove('paused');}
+function soPause(){if(getSVG())getSVG().classList.add('paused');}
+function soReplay(){
+  const s=getSVG(); if(!s)return;
+  const c=s.cloneNode(true); s.parentNode.replaceChild(c,s); c.id='ksv';
+  const css=$('anim-css'); if(css){const c2=css.cloneNode(true);css.parentNode.replaceChild(c2,css);c2.id='anim-css';}
+}
+window.addEventListener('load',()=>{if(getSVG())getSVG().classList.remove('paused');});
+</script>
+</body>
+</html>

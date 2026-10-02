@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>幸 — happiness / good fortune | Kanji N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1A1F40;font-family:"Noto Sans JP","Helvetica Neue",sans-serif;min-height:100vh}
+.header{background:#2B3261;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.header-kanji{font-size:2.4rem;font-weight:900;color:#FFF6E9;line-height:1}
+.header-meta{text-align:right;color:#b8bdd0;font-size:.85rem}
+.header-group{font-size:.7rem;opacity:.75;margin-top:3px}
+.header-meta a{color:#b8bdd0;text-decoration:none}
+.jlpt{display:inline-block;background:rgba(255,255,255,.15);border-radius:12px;padding:2px 8px;font-size:.75rem;margin-left:4px}
+.lang-bar{background:#2B3261;padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #b8bdd0;background:transparent;color:#b8bdd0;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:#FFF6E9;color:#2B3261;border-color:#FFF6E9;font-weight:700}
+.lang-btn:hover:not(.active){border-color:#FFF6E9;color:#FFF6E9}
+.content{max-width:480px;margin:0 auto;padding:16px}
+.core-meaning{text-align:center;font-size:1.2rem;font-weight:900;color:#FFF6E9;margin-bottom:14px;letter-spacing:.02em}
+.cm-quote{font-weight:400;opacity:.5;font-size:1rem}
+.so-section{margin-bottom:18px}
+.so-label{font-size:.72rem;letter-spacing:.08em;color:#b8bdd0;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.so-wrap{background:#FFF6E9;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.so-video-box{width:100%;aspect-ratio:1/1;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.so-controls{display:flex;gap:8px}
+.so-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .15s;font-family:inherit}
+.so-btn.play,.so-btn.pause{background:#2B3261;color:#FFF6E9}
+.so-btn.replay{background:#FFF6E9;color:#2B3261;border:1.5px solid #2B3261}
+.so-btn:hover{opacity:.85}
+.stroke{stroke:#2B3261;stroke-width:5.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ksv.paused .stroke{animation-play-state:paused!important}
+.card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid transparent}
+.on-card{border-color:#2B3261}
+.ex-card,.note-card{border-color:#EDE5D5}
+.card-lang-label{font-size:.7rem;color:#888;margin-bottom:8px}
+.card-reading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:8px;margin-bottom:14px}
+.reading-col{flex:1 1 auto;min-width:0}
+.reading-value{font-size:2rem;font-weight:900;color:#2B3261;overflow-wrap:break-word;line-height:1.3}
+.reading-rom{font-size:.95rem;font-weight:500;opacity:.7;font-style:italic}
+.okuri{opacity:.45;font-weight:700}
+.reading-value.multi{font-size:1.6rem}
+.ref-line{font-size:.75rem;color:#999;margin-top:4px}
+.listen-btn{display:flex;align-items:center;gap:6px;background:#2B3261;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0}
+.listen-btn:hover{opacity:.85}
+.section-label{font-size:.7rem;color:#888;margin-bottom:5px}
+.vrow{padding:8px 0;border-top:1px solid #f0ebe0}
+.section-label + .vrow,.card-lang-label + .vrow{border-top:none;padding-top:2px}
+.word-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.word-text{font-size:1.25rem;font-weight:800;color:#1A1F40}
+.ks{font-weight:800}.on-s{color:#2B3261}.ko{color:#b8bdd0;font-weight:400}
+.word-listen-btn{display:flex;align-items:center;gap:4px;background:#806B50;color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-family:inherit;margin-left:auto}
+.word-listen-btn:hover{opacity:.85}
+.word-romaji{font-size:.82rem;font-style:italic;color:#2B3261;margin-bottom:2px}
+.word-romaji strong{font-weight:800}
+.word-meaning{font-size:.88rem;color:#333}
+.example-box{background:#FFF6E9;border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:10px}
+.example-box:first-of-type{margin-top:0}
+.example-text{flex:1}.example-ja{font-size:1rem;font-weight:700;color:#1A1F40;margin-bottom:4px}
+.st{color:#2B3261;text-decoration:underline;text-decoration-color:#806B50;text-underline-offset:3px}
+.example-rom{font-size:.78rem;font-style:italic;color:#806B50;margin-bottom:4px}
+.example-tr{font-size:.82rem;color:#333}
+.example-listen{background:#806B50;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#fff;font-size:.85rem}
+.example-listen:hover{opacity:.85}
+.note-text{font-size:.86rem;color:#333;line-height:1.65}
+.footer{text-align:center;color:#b8bdd0;font-size:.7rem;padding:20px 16px}
+.footer a{color:#b8bdd0}
+body.ar .card{direction:rtl;text-align:right}
+body.ar .card-reading,body.ar .word-row,body.ar .example-box{flex-direction:row-reverse}
+body.ar .example-text{text-align:right}
+body.ar .word-listen-btn{margin-left:0;margin-right:auto}
+body.ar .note-text[dir=ltr]{text-align:left;direction:ltr}
+body.ar .example-ja,body.ar .example-rom,body.ar .word-romaji,body.ar .reading-value,body.ar .word-text,body.ar .ref-line{direction:ltr;unicode-bidi:isolate;text-align:right}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-kanji">幸</div>
+  <div class="header-meta">8 strokes <span class="jlpt">JLPT N3</span><div class="header-group"><a href="../index.html">G2 · Feelings, Personality, Wishes &amp; Habits</a></div></div>
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="switchLang('es',this)">ES</button>
+  <button class="lang-btn" onclick="switchLang('zh',this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="switchLang('ar',this)">العربية</button>
+</div>
+<div class="content">
+  <div class="core-meaning"><span class="cm-quote">"</span><span id="cm-text">happiness / good fortune</span><span class="cm-quote">"</span></div>
+  <div class="so-section">
+    <div class="so-label" id="lbl-so">STROKE ORDER</div>
+    <div class="so-wrap">
+      <div class="so-video-box"><style id="anim-css">.s0{stroke-dasharray:64;stroke-dashoffset:64;animation:drw0 0.60s ease-in-out 0.00s forwards}@keyframes drw0{to{stroke-dashoffset:0}}.s1{stroke-dasharray:60;stroke-dashoffset:60;animation:drw1 0.60s ease-in-out 0.72s forwards}@keyframes drw1{to{stroke-dashoffset:0}}.s2{stroke-dasharray:117;stroke-dashoffset:117;animation:drw2 0.60s ease-in-out 1.44s forwards}@keyframes drw2{to{stroke-dashoffset:0}}.s3{stroke-dasharray:60;stroke-dashoffset:60;animation:drw3 0.60s ease-in-out 2.16s forwards}@keyframes drw3{to{stroke-dashoffset:0}}.s4{stroke-dasharray:60;stroke-dashoffset:60;animation:drw4 0.60s ease-in-out 2.88s forwards}@keyframes drw4{to{stroke-dashoffset:0}}.s5{stroke-dasharray:88;stroke-dashoffset:88;animation:drw5 0.60s ease-in-out 3.60s forwards}@keyframes drw5{to{stroke-dashoffset:0}}.s6{stroke-dasharray:66;stroke-dashoffset:66;animation:drw6 0.60s ease-in-out 4.32s forwards}@keyframes drw6{to{stroke-dashoffset:0}}.s7{stroke-dasharray:60;stroke-dashoffset:60;animation:drw7 0.60s ease-in-out 5.04s forwards}@keyframes drw7{to{stroke-dashoffset:0}}</style>
+<svg id="ksv" viewBox="0 0 109 109" style="width:100%;height:100%">
+  <rect width="109" height="109" fill="#fff"/>
+  <path d="M31.75,25.8c1.53,0.38,4.34,0.53,5.86,0.38C47.12,25.25,61,23.62,72.4,22.8c2.54-0.18,4.08,0.18,5.35,0.37" class="stroke s0"/>
+<path d="M53.67,11c0.91,0.91,1.52,2.27,1.52,4.14c0,12.11-0.19,20.57-0.19,23.61" class="stroke s1"/>
+<path d="M12.38,41.61c2.57,0.54,7.31,0.82,9.86,0.54c22.76-2.53,46.26-4.4,64.64-4.98c4.28-0.13,6.86,0.26,9,0.53" class="stroke s2"/>
+<path d="M35.78,44.04c2.75,2.24,7.09,9.2,7.78,12.67" class="stroke s3"/>
+<path d="M71.12,41.12c0.06,0.74-0.14,1.76-0.47,2.41c-1.53,2.97-3.78,8.07-7.09,11.43" class="stroke s4"/>
+<path d="M22.88,60.48c2.25,0.52,4.87,0.64,7.44,0.38c9.92-1,34.23-2.99,48.46-3.5c2.27-0.08,5.16-0.12,7.35,0.33" class="stroke s5"/>
+<path d="M30.88,75.15c1.72,0.46,4.9,0.61,6.61,0.46c11.13-0.98,22.88-1.98,34.48-2.66c2.87-0.17,4.6,0.22,6.04,0.45" class="stroke s6"/>
+<path d="M54.56,60.5c0.85,0.85,1.04,2.12,1.04,3.83c0,3.42-0.12,19.17-0.12,29.67c0,2.15-0.04,3.91-0.06,5" class="stroke s7"/>
+
+</svg></div>
+      <div class="so-controls">
+        <button class="so-btn play"  onclick="soPlay()"   id="btn-play">▶ Play</button>
+        <button class="so-btn pause" onclick="soPause()"  id="btn-pause">⏸ Pause</button>
+        <button class="so-btn replay" onclick="soReplay()"id="btn-replay">↺ Replay</button>
+      </div>
+    </div>
+  </div>
+<div class="card on-card" data-card="1" data-type="ON">
+    <div class="card-lang-label lbl-on">音読み · On reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">コウ <span class="reading-rom">(kou)</span></div></div>
+      <button class="listen-btn" data-tts="コウ" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="幸福">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">幸</span><span class="ko">福</span></span>
+        <button class="word-listen-btn" data-tts="幸福" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">kou</strong><span class="ko">fuku</span></div>
+      <div class="word-meaning" id="vm-c1w0">happiness</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">家族の<span class="st">幸</span>福を願っています。</div>
+        <div class="example-rom">Kazoku no koufuku wo negatte imasu.</div>
+        <div class="example-tr" id="sent-c1">I wish for my family&#x27;s happiness.</div></div>
+      <button class="example-listen" data-tts="家族の幸福を願っています。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card on-card more-card" data-card="2" data-type="MORE_EXAMPLES">
+    <div class="card-lang-label lbl-more">More Examples</div>
+    <div class="vrow" data-word="幸運">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">幸</span><span class="ko">運</span></span>
+        <button class="word-listen-btn" data-tts="幸運" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">kou</strong><span class="ko">un</span></div>
+      <div class="word-meaning" id="vm-c2w0">good luck</div>
+    </div>
+    <div class="vrow" data-word="不幸">
+      <div class="word-row"><span class="word-text"><span class="ko">不</span><span class="ks on-s">幸</span></span>
+        <button class="word-listen-btn" data-tts="不幸" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><span class="ko">fu</span><strong class="on-s">kou</strong></div>
+      <div class="word-meaning" id="vm-c2w1">unhappiness / misfortune</div>
+    </div>
+  </div>
+<div class="card note-card">
+    <div class="card-lang-label lbl-note">ポイント · Notes</div>
+    <div class="note-text" id="note-text">幸せ（しあわせ） is a very common word meaning “happiness” or “happy.” For BLS, learn 幸せ as a whole word rather than treating せ as ordinary okurigana after a Kun reading しあわ.</div>
+  </div>
+
+</div>
+<div class="footer" id="footer-txt">Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio</div>
+<script>
+const MEANING={"en": "happiness / good fortune", "es": "felicidad / buena fortuna", "zh": "幸福 / 好运", "ko": "행복 / 행운", "ar": "سعادة / حظ سعيد"},VOC={"c1w0": {"en": "happiness", "es": "felicidad", "zh": "幸福", "ko": "행복", "ar": "سعادة"}, "c2w0": {"en": "good luck", "es": "buena suerte", "zh": "幸运 / 好运", "ko": "행운", "ar": "حظ سعيد"}, "c2w1": {"en": "unhappiness / misfortune", "es": "infelicidad / desgracia", "zh": "不幸", "ko": "불행", "ar": "تعاسة / مصيبة"}},SEN={"c1": {"en": "I wish for my family's happiness.", "es": "Deseo la felicidad de mi familia.", "zh": "我祝愿家人幸福。", "ko": "가족의 행복을 바라고 있습니다.", "ar": "أتمنّى السعادة لعائلتي."}},NOTE={"en": "幸せ（しあわせ） is a very common word meaning “happiness” or “happy.” For BLS, learn 幸せ as a whole word rather than treating せ as ordinary okurigana after a Kun reading しあわ.", "es": "幸せ（しあわせ） es una palabra muy común que significa «felicidad» o «feliz». En BLS, aprende 幸せ como una palabra completa, en lugar de tratar せ como okurigana normal después de una lectura Kun しあわ.", "zh": "幸せ（しあわせ）是非常常用的词，意思是“幸福”或“幸福的”。在BLS中，请把幸せ作为一个完整的词来记，而不要把せ看作接在训读しあわ后面的普通送假名。", "ko": "幸せ(しあわせ)는 '행복' 또는 '행복한'이라는 뜻의 아주 흔한 단어입니다. BLS에서는 せ를 훈독 しあわ 뒤에 붙는 일반적인 오쿠리가나로 보지 말고, 幸せ를 한 단어로 통째로 익히세요.", "ar": "幸せ（しあわせ） كلمة شائعة جدًّا تعني «السعادة» أو «سعيد». في BLS، تعلّم 幸せ ككلمة كاملة بدلًا من اعتبار せ أوكوريغانا عادية بعد قراءة Kun هي しあわ."};
+const L={
+  so:{"en":"STROKE ORDER","es":"ORDEN DE TRAZOS","zh":"笔画顺序","ko":"획순","ar":"ترتيب الضربات"},
+  play:{"en":"▶ Play","es":"▶ Reproducir","zh":"▶ 播放","ko":"▶ 재생","ar":"▶ تشغيل"},
+  pause:{"en":"⏸ Pause","es":"⏸ Pausar","zh":"⏸ 暂停","ko":"⏸ 일시정지","ar":"⏸ إيقاف"},
+  replay:{"en":"↺ Replay","es":"↺ Repetir","zh":"↺ 重播","ko":"↺ 다시보기","ar":"↺ إعادة"},
+  on_lbl:{"en":"音読み · On reading","es":"音読み · Lectura On","zh":"音読み · 音读","ko":"音読み · 온독","ar":"قراءة أون · 音読み"},
+  kun_lbl:{"en":"訓読み · Kun reading","es":"訓読み · Lectura Kun","zh":"訓読み · 训读","ko":"訓読み · 훈독","ar":"قراءة كون · 訓読み"},
+  word:{"en":"単語 · Word","es":"単語 · Palabra","zh":"単語 · 单词","ko":"単語 · 단어","ar":"كلمة · 単語"},
+  more:{"en":"More Examples","es":"Más ejemplos","zh":"更多例子","ko":"더 많은 예","ar":"المزيد من الأمثلة"},
+  ex:{"en":"例文 · Example","es":"例文 · Oración","zh":"例文 · 例句","ko":"例文 · 예문","ar":"مثال · 例文"},
+  note:{"en":"ポイント · Notes","es":"ポイント · Notas","zh":"ポイント · 要点","ko":"ポイント · 포인트","ar":"ملاحظات · ポイント"},
+  listen:{"en":"🔊 Listen","es":"🔊 Escuchar","zh":"🔊 听","ko":"🔊 듣기","ar":"🔊 استمع"},
+  footer:{"en":"Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio","es":"Datos de trazos: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Creado con ❤ por Between Line Studio","zh":"笔画数据：KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 制作","ko":"획 데이터: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 제작","ar":"بيانات الضربات: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · صُنع بـ ❤ من Between Line Studio"}
+};
+const $=id=>document.getElementById(id);
+function set(id,v){const el=$(id);if(el&&v!=null)el.textContent=v;}
+function setAll(sel,v){document.querySelectorAll(sel).forEach(el=>{if(v!=null)el.textContent=v;});}
+function switchLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className=lang==='ar'?'ar':'';
+  set('cm-text',MEANING[lang]);
+  for(const k in VOC) set('vm-'+k,VOC[k][lang]);
+  for(const k in SEN) set('sent-'+k,SEN[k][lang]);
+  {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
+      el.innerHTML=t.innerHTML.replace(/[\u3040-\u30ff\u4e00-\u9fff～ー]+(?:\s*[+＋]\s*[\u3040-\u30ff\u4e00-\u9fff～ー]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>'); }
+    else el.textContent=NOTE[lang]; }}
+  set('lbl-so',L.so[lang]);
+  set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
+  setAll('.lbl-on',L.on_lbl[lang]); setAll('.lbl-kun',L.kun_lbl[lang]);
+  setAll('.lbl-more',L.more[lang]); setAll('.lbl-word',L.word[lang]);
+  setAll('.lbl-ex',L.ex[lang]); setAll('.lbl-note',L.note[lang]);
+  setAll('.lbl-listen',L.listen[lang]);
+  set('footer-txt',L.footer[lang]);
+}
+function speak(t){
+  if(!t||t==='—'||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('ja'));
+    if(v)u.voice=v; speechSynthesis.speak(u);};
+  speechSynthesis.getVoices().length?go():speechSynthesis.addEventListener('voiceschanged',go,{once:true});
+}
+const getSVG=()=>$('ksv');
+function soPlay(){if(getSVG())getSVG().classList.remove('paused');}
+function soPause(){if(getSVG())getSVG().classList.add('paused');}
+function soReplay(){
+  const s=getSVG(); if(!s)return;
+  const c=s.cloneNode(true); s.parentNode.replaceChild(c,s); c.id='ksv';
+  const css=$('anim-css'); if(css){const c2=css.cloneNode(true);css.parentNode.replaceChild(c2,css);c2.id='anim-css';}
+}
+window.addEventListener('load',()=>{if(getSVG())getSVG().classList.remove('paused');});
+</script>
+</body>
+</html>

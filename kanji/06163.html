@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>慣 — become accustomed / habit | Kanji N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1A1F40;font-family:"Noto Sans JP","Helvetica Neue",sans-serif;min-height:100vh}
+.header{background:#2B3261;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.header-kanji{font-size:2.4rem;font-weight:900;color:#FFF6E9;line-height:1}
+.header-meta{text-align:right;color:#b8bdd0;font-size:.85rem}
+.header-group{font-size:.7rem;opacity:.75;margin-top:3px}
+.header-meta a{color:#b8bdd0;text-decoration:none}
+.jlpt{display:inline-block;background:rgba(255,255,255,.15);border-radius:12px;padding:2px 8px;font-size:.75rem;margin-left:4px}
+.lang-bar{background:#2B3261;padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #b8bdd0;background:transparent;color:#b8bdd0;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:#FFF6E9;color:#2B3261;border-color:#FFF6E9;font-weight:700}
+.lang-btn:hover:not(.active){border-color:#FFF6E9;color:#FFF6E9}
+.content{max-width:480px;margin:0 auto;padding:16px}
+.core-meaning{text-align:center;font-size:1.2rem;font-weight:900;color:#FFF6E9;margin-bottom:14px;letter-spacing:.02em}
+.cm-quote{font-weight:400;opacity:.5;font-size:1rem}
+.so-section{margin-bottom:18px}
+.so-label{font-size:.72rem;letter-spacing:.08em;color:#b8bdd0;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.so-wrap{background:#FFF6E9;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.so-video-box{width:100%;aspect-ratio:1/1;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.so-controls{display:flex;gap:8px}
+.so-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .15s;font-family:inherit}
+.so-btn.play,.so-btn.pause{background:#2B3261;color:#FFF6E9}
+.so-btn.replay{background:#FFF6E9;color:#2B3261;border:1.5px solid #2B3261}
+.so-btn:hover{opacity:.85}
+.stroke{stroke:#2B3261;stroke-width:5.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ksv.paused .stroke{animation-play-state:paused!important}
+.card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid transparent}
+.on-card{border-color:#2B3261}
+.ex-card,.note-card{border-color:#EDE5D5}
+.card-lang-label{font-size:.7rem;color:#888;margin-bottom:8px}
+.card-reading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:8px;margin-bottom:14px}
+.reading-col{flex:1 1 auto;min-width:0}
+.reading-value{font-size:2rem;font-weight:900;color:#2B3261;overflow-wrap:break-word;line-height:1.3}
+.reading-rom{font-size:.95rem;font-weight:500;opacity:.7;font-style:italic}
+.okuri{opacity:.45;font-weight:700}
+.reading-value.multi{font-size:1.6rem}
+.ref-line{font-size:.75rem;color:#999;margin-top:4px}
+.listen-btn{display:flex;align-items:center;gap:6px;background:#2B3261;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0}
+.listen-btn:hover{opacity:.85}
+.section-label{font-size:.7rem;color:#888;margin-bottom:5px}
+.vrow{padding:8px 0;border-top:1px solid #f0ebe0}
+.section-label + .vrow,.card-lang-label + .vrow{border-top:none;padding-top:2px}
+.word-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.word-text{font-size:1.25rem;font-weight:800;color:#1A1F40}
+.ks{font-weight:800}.on-s{color:#2B3261}.ko{color:#b8bdd0;font-weight:400}
+.word-listen-btn{display:flex;align-items:center;gap:4px;background:#806B50;color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-family:inherit;margin-left:auto}
+.word-listen-btn:hover{opacity:.85}
+.word-romaji{font-size:.82rem;font-style:italic;color:#2B3261;margin-bottom:2px}
+.word-romaji strong{font-weight:800}
+.word-meaning{font-size:.88rem;color:#333}
+.example-box{background:#FFF6E9;border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:10px}
+.example-box:first-of-type{margin-top:0}
+.example-text{flex:1}.example-ja{font-size:1rem;font-weight:700;color:#1A1F40;margin-bottom:4px}
+.st{color:#2B3261;text-decoration:underline;text-decoration-color:#806B50;text-underline-offset:3px}
+.example-rom{font-size:.78rem;font-style:italic;color:#806B50;margin-bottom:4px}
+.example-tr{font-size:.82rem;color:#333}
+.example-listen{background:#806B50;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#fff;font-size:.85rem}
+.example-listen:hover{opacity:.85}
+.note-text{font-size:.86rem;color:#333;line-height:1.65}
+.footer{text-align:center;color:#b8bdd0;font-size:.7rem;padding:20px 16px}
+.footer a{color:#b8bdd0}
+body.ar .card{direction:rtl;text-align:right}
+body.ar .card-reading,body.ar .word-row,body.ar .example-box{flex-direction:row-reverse}
+body.ar .example-text{text-align:right}
+body.ar .word-listen-btn{margin-left:0;margin-right:auto}
+body.ar .note-text[dir=ltr]{text-align:left;direction:ltr}
+body.ar .example-ja,body.ar .example-rom,body.ar .word-romaji,body.ar .reading-value,body.ar .word-text,body.ar .ref-line{direction:ltr;unicode-bidi:isolate;text-align:right}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-kanji">慣</div>
+  <div class="header-meta">14 strokes <span class="jlpt">JLPT N3</span><div class="header-group"><a href="../index.html">G2 · Feelings, Personality, Wishes &amp; Habits</a></div></div>
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="switchLang('es',this)">ES</button>
+  <button class="lang-btn" onclick="switchLang('zh',this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="switchLang('ar',this)">العربية</button>
+</div>
+<div class="content">
+  <div class="core-meaning"><span class="cm-quote">"</span><span id="cm-text">become accustomed / habit</span><span class="cm-quote">"</span></div>
+  <div class="so-section">
+    <div class="so-label" id="lbl-so">STROKE ORDER</div>
+    <div class="so-wrap">
+      <div class="so-video-box"><style id="anim-css">.s0{stroke-dasharray:60;stroke-dashoffset:60;animation:drw0 0.60s ease-in-out 0.00s forwards}@keyframes drw0{to{stroke-dashoffset:0}}.s1{stroke-dasharray:60;stroke-dashoffset:60;animation:drw1 0.60s ease-in-out 0.72s forwards}@keyframes drw1{to{stroke-dashoffset:0}}.s2{stroke-dasharray:116;stroke-dashoffset:116;animation:drw2 0.60s ease-in-out 1.44s forwards}@keyframes drw2{to{stroke-dashoffset:0}}.s3{stroke-dasharray:79;stroke-dashoffset:79;animation:drw3 0.60s ease-in-out 2.16s forwards}@keyframes drw3{to{stroke-dashoffset:0}}.s4{stroke-dasharray:77;stroke-dashoffset:77;animation:drw4 0.60s ease-in-out 2.88s forwards}@keyframes drw4{to{stroke-dashoffset:0}}.s5{stroke-dasharray:60;stroke-dashoffset:60;animation:drw5 0.60s ease-in-out 3.60s forwards}@keyframes drw5{to{stroke-dashoffset:0}}.s6{stroke-dasharray:85;stroke-dashoffset:85;animation:drw6 0.60s ease-in-out 4.32s forwards}@keyframes drw6{to{stroke-dashoffset:0}}.s7{stroke-dasharray:60;stroke-dashoffset:60;animation:drw7 0.60s ease-in-out 5.04s forwards}@keyframes drw7{to{stroke-dashoffset:0}}.s8{stroke-dasharray:91;stroke-dashoffset:91;animation:drw8 0.60s ease-in-out 5.76s forwards}@keyframes drw8{to{stroke-dashoffset:0}}.s9{stroke-dasharray:60;stroke-dashoffset:60;animation:drw9 0.60s ease-in-out 6.48s forwards}@keyframes drw9{to{stroke-dashoffset:0}}.s10{stroke-dasharray:60;stroke-dashoffset:60;animation:drw10 0.60s ease-in-out 7.20s forwards}@keyframes drw10{to{stroke-dashoffset:0}}.s11{stroke-dasharray:60;stroke-dashoffset:60;animation:drw11 0.60s ease-in-out 7.92s forwards}@keyframes drw11{to{stroke-dashoffset:0}}.s12{stroke-dasharray:60;stroke-dashoffset:60;animation:drw12 0.60s ease-in-out 8.64s forwards}@keyframes drw12{to{stroke-dashoffset:0}}.s13{stroke-dasharray:60;stroke-dashoffset:60;animation:drw13 0.60s ease-in-out 9.36s forwards}@keyframes drw13{to{stroke-dashoffset:0}}</style>
+<svg id="ksv" viewBox="0 0 109 109" style="width:100%;height:100%">
+  <rect width="109" height="109" fill="#fff"/>
+  <path d="M16.18,38c0,5.88-3.06,14.57-3.86,16.25" class="stroke s0"/>
+<path d="M29.02,35.08c2.84,1.79,7.33,7.35,8.04,10.13" class="stroke s1"/>
+<path d="M22.87,14.5c1.06,1.06,1.46,2.75,1.46,4.25c0,0.87,0.02,51.42,0.03,71.25c0,3.57,0,6.15,0,7.25" class="stroke s2"/>
+<path d="m51.6,15.24c0.83,0.83,1.14,2.12,1.02,3.3-0.74,7.34-1.75,14.09-3.1,18.7-0.5,1.69,0.19,2.75,1.57,2.46,8.11,-1.7,15.02,-2.59,24.42,-3.15,2.09,-0.13,4.3,-0.23,6.68,-0.33" class="stroke s3"/>
+<path d="M54.17,17.48c0.8-0.08,24.87-3.59,28.85-3.52c1.55,0.03,2.96,1.15,2.65,3c-0.96,5.81-1.64,11.08-2.84,17.67C82.58,36.03,82.3,37.47,82,39" class="stroke s4"/>
+<path d="M66.52,16.02c0.73,0.73,0.98,2.1,0.88,3.07c-0.62,5.83-1.02,10.28-1.86,17.1" class="stroke s5"/>
+<path d="M36.88,28.59c2.37,0.41,5.19,0.2,7.63-0.02c11.28-1.02,28.03-2.96,44.5-4.11c2.99-0.21,6.24-0.33,8.61,0.28" class="stroke s6"/>
+<path d="M51.63,46.75c0.93,0.93,1.25,2.44,1.25,3.52c0,0.87,0.06,21.68,0.09,29.85c0.01,1.92,0.01,3.14,0.01,3.25" class="stroke s7"/>
+<path d="M54.04,48.63c3.71-0.51,24.23-2.64,26.85-2.73c2.19-0.07,3.79,1.1,3.79,3.34c0,3.79-0.08,17.4-0.09,28.89c0,1.5,0,2.97,0,4.38" class="stroke s8"/>
+<path d="M54.18,59.75c8.57-0.75,20.19-2.12,29.05-2.33" class="stroke s9"/>
+<path d="M54.23,70.38c7.69-0.79,19.98-2.16,29.17-2.52" class="stroke s10"/>
+<path d="M54.1,81.54c9.57-0.64,17.65-1.41,28.98-1.78" class="stroke s11"/>
+<path d="M55.63,86.36c0.46,1.07-0.15,2.35-1.05,3.1c-2.73,2.26-10.11,6.8-15.58,9.42" class="stroke s12"/>
+<path d="M77.56,85.57c6.34,3.29,13.84,9.16,15.57,11.96" class="stroke s13"/>
+
+</svg></div>
+      <div class="so-controls">
+        <button class="so-btn play"  onclick="soPlay()"   id="btn-play">▶ Play</button>
+        <button class="so-btn pause" onclick="soPause()"  id="btn-pause">⏸ Pause</button>
+        <button class="so-btn replay" onclick="soReplay()"id="btn-replay">↺ Replay</button>
+      </div>
+    </div>
+  </div>
+<div class="card on-card" data-card="1" data-type="ON">
+    <div class="card-lang-label lbl-on">音読み · On reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">カン <span class="reading-rom">(kan)</span></div></div>
+      <button class="listen-btn" data-tts="カン" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="習慣">
+      <div class="word-row"><span class="word-text"><span class="ko">習</span><span class="ks on-s">慣</span></span>
+        <button class="word-listen-btn" data-tts="習慣" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><span class="ko">shuu</span><strong class="on-s">kan</strong></div>
+      <div class="word-meaning" id="vm-c1w0">habit / custom</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">毎朝運動するのが習<span class="st">慣</span>です。</div>
+        <div class="example-rom">Maiasa undou suru no ga shuukan desu.</div>
+        <div class="example-tr" id="sent-c1">Exercising every morning is my habit.</div></div>
+      <button class="example-listen" data-tts="毎朝運動するのが習慣です。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card on-card" data-card="2" data-type="KUN">
+    <div class="card-lang-label lbl-kun">訓読み · Kun reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">な <span class="reading-rom">(na)</span></div></div>
+      <button class="listen-btn" data-tts="な" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="慣れる">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">慣</span><span class="ko">れ</span><span class="ko">る</span></span>
+        <button class="word-listen-btn" data-tts="慣れる" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">na</strong><span class="ko">reru</span></div>
+      <div class="word-meaning" id="vm-c2w0">get used to</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">新しい生活にだんだん<span class="st">慣</span>れてきました。</div>
+        <div class="example-rom">Atarashii seikatsu ni dandan narete kimashita.</div>
+        <div class="example-tr" id="sent-c2">I have gradually gotten used to my new life.</div></div>
+      <button class="example-listen" data-tts="新しい生活にだんだん慣れてきました。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card note-card">
+    <div class="card-lang-label lbl-note">ポイント · Notes</div>
+    <div class="note-text" id="note-text">慣れる（なれる） is commonly used with に: ～に慣れる means “get used to ～.” 習慣（しゅうかん） is the noun “habit,” referring to something done regularly.</div>
+  </div>
+
+</div>
+<div class="footer" id="footer-txt">Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio</div>
+<script>
+const MEANING={"en": "become accustomed / habit", "es": "acostumbrarse / hábito", "zh": "习惯 / 适应", "ko": "익숙해지다 / 습관", "ar": "يعتاد / عادة"},VOC={"c1w0": {"en": "habit / custom", "es": "hábito / costumbre", "zh": "习惯 / 风俗", "ko": "습관 / 관습", "ar": "عادة / عُرف"}, "c2w0": {"en": "get used to", "es": "acostumbrarse", "zh": "习惯 / 适应", "ko": "익숙해지다", "ar": "يعتاد على"}},SEN={"c1": {"en": "Exercising every morning is my habit.", "es": "Hacer ejercicio cada mañana es mi hábito.", "zh": "每天早上运动是我的习惯。", "ko": "매일 아침 운동하는 것이 제 습관입니다.", "ar": "ممارسة الرياضة كل صباح هي عادتي."}, "c2": {"en": "I have gradually gotten used to my new life.", "es": "Poco a poco me he acostumbrado a mi nueva vida.", "zh": "我渐渐习惯了新的生活。", "ko": "새로운 생활에 점점 익숙해졌습니다.", "ar": "اعتدتُ تدريجيًّا على حياتي الجديدة."}},NOTE={"en": "慣れる（なれる） is commonly used with に: ～に慣れる means “get used to ～.” 習慣（しゅうかん） is the noun “habit,” referring to something done regularly.", "es": "慣れる（なれる） se usa a menudo con に: ～に慣れる significa «acostumbrarse a ～». 習慣（しゅうかん） es el sustantivo «hábito», que se refiere a algo que se hace con regularidad.", "zh": "慣れる（なれる）常与に一起使用：～に慣れる表示“习惯于～”。習慣（しゅうかん）是名词“习惯”，指经常做的事情。", "ko": "慣れる(なれる)는 흔히 に와 함께 쓰입니다. ～に慣れる는 '～에 익숙해지다'라는 뜻입니다. 習慣(しゅうかん)은 규칙적으로 하는 일을 가리키는 명사 '습관'입니다.", "ar": "يُستخدم 慣れる（なれる） عادةً مع に: فعبارة ～に慣れる تعني «يعتاد على ～». أما 習慣（しゅうかん） فهو الاسم «عادة»، ويشير إلى شيء يُفعل بانتظام."};
+const L={
+  so:{"en":"STROKE ORDER","es":"ORDEN DE TRAZOS","zh":"笔画顺序","ko":"획순","ar":"ترتيب الضربات"},
+  play:{"en":"▶ Play","es":"▶ Reproducir","zh":"▶ 播放","ko":"▶ 재생","ar":"▶ تشغيل"},
+  pause:{"en":"⏸ Pause","es":"⏸ Pausar","zh":"⏸ 暂停","ko":"⏸ 일시정지","ar":"⏸ إيقاف"},
+  replay:{"en":"↺ Replay","es":"↺ Repetir","zh":"↺ 重播","ko":"↺ 다시보기","ar":"↺ إعادة"},
+  on_lbl:{"en":"音読み · On reading","es":"音読み · Lectura On","zh":"音読み · 音读","ko":"音読み · 온독","ar":"قراءة أون · 音読み"},
+  kun_lbl:{"en":"訓読み · Kun reading","es":"訓読み · Lectura Kun","zh":"訓読み · 训读","ko":"訓読み · 훈독","ar":"قراءة كون · 訓読み"},
+  word:{"en":"単語 · Word","es":"単語 · Palabra","zh":"単語 · 单词","ko":"単語 · 단어","ar":"كلمة · 単語"},
+  more:{"en":"More Examples","es":"Más ejemplos","zh":"更多例子","ko":"더 많은 예","ar":"المزيد من الأمثلة"},
+  ex:{"en":"例文 · Example","es":"例文 · Oración","zh":"例文 · 例句","ko":"例文 · 예문","ar":"مثال · 例文"},
+  note:{"en":"ポイント · Notes","es":"ポイント · Notas","zh":"ポイント · 要点","ko":"ポイント · 포인트","ar":"ملاحظات · ポイント"},
+  listen:{"en":"🔊 Listen","es":"🔊 Escuchar","zh":"🔊 听","ko":"🔊 듣기","ar":"🔊 استمع"},
+  footer:{"en":"Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio","es":"Datos de trazos: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Creado con ❤ por Between Line Studio","zh":"笔画数据：KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 制作","ko":"획 데이터: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 제작","ar":"بيانات الضربات: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · صُنع بـ ❤ من Between Line Studio"}
+};
+const $=id=>document.getElementById(id);
+function set(id,v){const el=$(id);if(el&&v!=null)el.textContent=v;}
+function setAll(sel,v){document.querySelectorAll(sel).forEach(el=>{if(v!=null)el.textContent=v;});}
+function switchLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className=lang==='ar'?'ar':'';
+  set('cm-text',MEANING[lang]);
+  for(const k in VOC) set('vm-'+k,VOC[k][lang]);
+  for(const k in SEN) set('sent-'+k,SEN[k][lang]);
+  {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
+      el.innerHTML=t.innerHTML.replace(/[\u3040-\u30ff\u4e00-\u9fff～ー]+(?:\s*[+＋]\s*[\u3040-\u30ff\u4e00-\u9fff～ー]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>'); }
+    else el.textContent=NOTE[lang]; }}
+  set('lbl-so',L.so[lang]);
+  set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
+  setAll('.lbl-on',L.on_lbl[lang]); setAll('.lbl-kun',L.kun_lbl[lang]);
+  setAll('.lbl-more',L.more[lang]); setAll('.lbl-word',L.word[lang]);
+  setAll('.lbl-ex',L.ex[lang]); setAll('.lbl-note',L.note[lang]);
+  setAll('.lbl-listen',L.listen[lang]);
+  set('footer-txt',L.footer[lang]);
+}
+function speak(t){
+  if(!t||t==='—'||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('ja'));
+    if(v)u.voice=v; speechSynthesis.speak(u);};
+  speechSynthesis.getVoices().length?go():speechSynthesis.addEventListener('voiceschanged',go,{once:true});
+}
+const getSVG=()=>$('ksv');
+function soPlay(){if(getSVG())getSVG().classList.remove('paused');}
+function soPause(){if(getSVG())getSVG().classList.add('paused');}
+function soReplay(){
+  const s=getSVG(); if(!s)return;
+  const c=s.cloneNode(true); s.parentNode.replaceChild(c,s); c.id='ksv';
+  const css=$('anim-css'); if(css){const c2=css.cloneNode(true);css.parentNode.replaceChild(c2,css);c2.id='anim-css';}
+}
+window.addEventListener('load',()=>{if(getSVG())getSVG().classList.remove('paused');});
+</script>
+</body>
+</html>
