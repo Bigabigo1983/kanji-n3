@@ -2,21 +2,32 @@
 <html lang="ja"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JLPT N3 Kanji — Writing Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{background:#faf3e1;font-family:sans-serif;padding:20px;text-align:center}
-h1{color:#2b3261;margin-bottom:6px}p{color:#888;margin-bottom:20px}
-h2{color:#2b3261;font-size:15px;margin:22px auto 10px;max-width:900px;text-align:left;border-bottom:1.5px solid #c8bfa0;padding-bottom:4px}
-.grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:900px;margin:0 auto}
-.card{display:flex;flex-direction:column;align-items:center;width:70px;padding:10px 6px;
-  background:#f0e8d0;border-radius:10px;text-decoration:none;color:#2b3261;
-  border:1.5px solid #c8bfa0;transition:transform .15s}
-.card:hover{transform:scale(1.1)}
-.ch{font-size:36px;line-height:1}
-.rd{font-size:9px;color:#666;margin-top:4px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff6e9;font-family:'Noto Sans JP',sans-serif;color:#2b3261}
+.titlebar{background:#2b3261;color:#fff;text-align:center;padding:14px 16px 10px}
+.titlebar h1{font-size:24px;font-weight:700;letter-spacing:.2px}
+.titlebar p{font-size:12.5px;color:#d1d4e6;margin-top:2px}
+main{max-width:760px;margin:0 auto;padding:14px 16px 28px}
+.gbar{display:flex;justify-content:space-between;align-items:center;background:#2b3261;color:#fff;
+  border-radius:6px;padding:4px 12px;margin:14px 0 8px;font-weight:700;font-size:13.5px}
+.gbar .n{font-size:11.5px;white-space:nowrap;margin-left:10px}
+.grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.card{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;height:62px;
+  background:#fff;border:1.2px solid #b3ada5;border-radius:9px;text-decoration:none;color:#2b3261;transition:transform .15s}
+.card:hover{transform:scale(1.06)}
+.ch{font-size:27px;font-weight:700;line-height:1.1}
+.rd{font-size:10px;color:#806b50;margin-top:2px}
+footer{text-align:center;font-size:11px;color:#806b50;padding:6px 0 20px}
+@media (max-width:560px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))} .titlebar h1{font-size:20px}}
+@media (max-width:360px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style></head><body>
-<h1>JLPT N3 漢字</h1>
-<p>Writing Practice — tap any kanji to see stroke order &amp; hear pronunciation</p>
-<h2>G1 — People &amp; Relationships (15)</h2>
+<header class="titlebar"><h1>JLPT N3 Kanji Writing Practice</h1>
+<p>Table of Contents · tap any kanji to see stroke order &amp; hear pronunciation</p></header>
+<main>
+<div class="gbar"><span>G1 — People &amp; Relationships</span><span class="n">(15 kanji)</span></div>
 <div class="grid"><a href="kanji/04e92.html" class="card"><span class="ch">互</span><span class="rd">ゴ</span></a>
 <a href="kanji/04ea4.html" class="card"><span class="ch">交</span><span class="rd">コウ</span></a>
 <a href="kanji/04f9b.html" class="card"><span class="ch">供</span><span class="rd">キョウ</span></a>
@@ -33,9 +44,9 @@ h2{color:#2b3261;font-size:15px;margin:22px auto 10px;max-width:900px;text-align
 <a href="kanji/095a2.html" class="card"><span class="ch">関</span><span class="rd">カン</span></a>
 <a href="kanji/07dd2.html" class="card"><span class="ch">緒</span><span class="rd">ショ</span></a>
 </div>
-<h2>G2 — Feelings, Personality, Wishes &amp; Habits (20)</h2>
+<div class="gbar"><span>G2 — Feelings, Personality, Wishes &amp; Habits</span><span class="n">(20 kanji)</span></div>
 <div class="grid"><a href="kanji/0559c.html" class="card"><span class="ch">喜</span><span class="rd">キ</span></a>
-<a href="kanji/05922.html" class="card"><span class="ch">夢</span><span class="rd">ゆめ</span></a>
+<a href="kanji/05922.html" class="card"><span class="ch">夢</span><span class="rd">ム</span></a>
 <a href="kanji/0597d.html" class="card"><span class="ch">好</span><span class="rd">コウ</span></a>
 <a href="kanji/05e78.html" class="card"><span class="ch">幸</span><span class="rd">コウ</span></a>
 <a href="kanji/05ff5.html" class="card"><span class="ch">念</span><span class="rd">ネン</span></a>
@@ -50,10 +61,12 @@ h2{color:#2b3261;font-size:15px;margin:22px auto 10px;max-width:900px;text-align
 <a href="kanji/06b32.html" class="card"><span class="ch">欲</span><span class="rd">ヨク</span></a>
 <a href="kanji/082e6.html" class="card"><span class="ch">苦</span><span class="rd">ク</span></a>
 <a href="kanji/0983c.html" class="card"><span class="ch">頼</span><span class="rd">ライ</span></a>
-<a href="kanji/09858.html" class="card"><span class="ch">願</span><span class="rd">ねが</span></a>
+<a href="kanji/09858.html" class="card"><span class="ch">願</span><span class="rd">ガン</span></a>
 <a href="kanji/05049.html" class="card"><span class="ch">偉</span><span class="rd">イ</span></a>
 <a href="kanji/0512a.html" class="card"><span class="ch">優</span><span class="rd">ユウ</span></a>
 <a href="kanji/0671b.html" class="card"><span class="ch">望</span><span class="rd">ボウ</span></a>
 </div>
 
+</main>
+<footer>Between Line Studio · JLPT N3 · 35 Kanji</footer>
 </body></html>
