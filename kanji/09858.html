@@ -195,7 +195,7 @@ function switchLang(lang,btn){
   for(const k in VOC) set('vm-'+k,VOC[k][lang]);
   for(const k in SEN) set('sent-'+k,SEN[k][lang]);
   {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
-      el.innerHTML=t.innerHTML.replace(/[\u3040-\u30ff\u4e00-\u9fff～ー]+(?:\s*[+＋]\s*[\u3040-\u30ff\u4e00-\u9fff～ー]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>'); }
+      el.innerHTML=t.innerHTML.replace(/[0-9０-９]*[぀-ヿ一-鿿～ー][0-9０-９぀-ヿ一-鿿～ー（）]*(?:\s*[+＋]\s*[぀-ヿ一-鿿～ー（）]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate;white-space:nowrap">'+m+'</span>'); }
     else el.textContent=NOTE[lang]; }}
   set('lbl-so',L.so[lang]);
   set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
