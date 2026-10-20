@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>議 — deliberation / discussion | Kanji N3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#1A1F40;font-family:"Noto Sans JP","Helvetica Neue",sans-serif;min-height:100vh}
+.header{background:#2B3261;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.header-kanji{font-size:2.4rem;font-weight:900;color:#FFF6E9;line-height:1}
+.header-meta{text-align:right;color:#b8bdd0;font-size:.85rem}
+.header-group{font-size:.7rem;opacity:.75;margin-top:3px}
+.header-meta a{color:#b8bdd0;text-decoration:none}
+.jlpt{display:inline-block;background:rgba(255,255,255,.15);border-radius:12px;padding:2px 8px;font-size:.75rem;margin-left:4px}
+.lang-bar{background:#2B3261;padding:0 20px 14px;display:flex;gap:8px;flex-wrap:wrap}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #b8bdd0;background:transparent;color:#b8bdd0;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn.active{background:#FFF6E9;color:#2B3261;border-color:#FFF6E9;font-weight:700}
+.lang-btn:hover:not(.active){border-color:#FFF6E9;color:#FFF6E9}
+.content{max-width:480px;margin:0 auto;padding:16px}
+.core-meaning{text-align:center;font-size:1.2rem;font-weight:900;color:#FFF6E9;margin-bottom:14px;letter-spacing:.02em}
+.cm-quote{font-weight:400;opacity:.5;font-size:1rem}
+.so-section{margin-bottom:18px}
+.so-label{font-size:.72rem;letter-spacing:.08em;color:#b8bdd0;text-align:center;margin-bottom:8px;text-transform:uppercase}
+.so-wrap{background:#FFF6E9;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.so-video-box{width:100%;aspect-ratio:1/1;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.so-controls{display:flex;gap:8px}
+.so-btn{padding:8px 18px;border-radius:20px;border:none;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .15s;font-family:inherit}
+.so-btn.play,.so-btn.pause{background:#2B3261;color:#FFF6E9}
+.so-btn.replay{background:#FFF6E9;color:#2B3261;border:1.5px solid #2B3261}
+.so-btn:hover{opacity:.85}
+.stroke{stroke:#2B3261;stroke-width:5.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#ksv.paused .stroke{animation-play-state:paused!important}
+.card{background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:14px;border:2px solid transparent}
+.on-card{border-color:#2B3261}
+.ex-card,.note-card{border-color:#EDE5D5}
+.card-lang-label{font-size:.7rem;color:#888;margin-bottom:8px}
+.card-reading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;row-gap:8px;margin-bottom:14px}
+.reading-col{flex:1 1 auto;min-width:0}
+.reading-value{font-size:2rem;font-weight:900;color:#2B3261;overflow-wrap:break-word;line-height:1.3}
+.reading-rom{font-size:.95rem;font-weight:500;opacity:.7;font-style:italic}
+.okuri{opacity:.45;font-weight:700}
+.reading-value.multi{font-size:1.6rem}
+.ref-line{font-size:.75rem;color:#999;margin-top:4px}
+.listen-btn{display:flex;align-items:center;gap:6px;background:#2B3261;color:#fff;border:none;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;flex-shrink:0}
+.listen-btn:hover{opacity:.85}
+.section-label{font-size:.7rem;color:#888;margin-bottom:5px}
+.vrow{padding:8px 0;border-top:1px solid #f0ebe0}
+.section-label + .vrow,.card-lang-label + .vrow{border-top:none;padding-top:2px}
+.word-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.word-text{font-size:1.25rem;font-weight:800;color:#1A1F40}
+.ks{font-weight:800}.on-s{color:#2B3261}.ko{color:#b8bdd0;font-weight:400}
+.word-listen-btn{display:flex;align-items:center;gap:4px;background:#806B50;color:#fff;border:none;border-radius:14px;padding:4px 10px;font-size:.75rem;cursor:pointer;font-family:inherit;margin-left:auto}
+.word-listen-btn:hover{opacity:.85}
+.word-romaji{font-size:.82rem;font-style:italic;color:#2B3261;margin-bottom:2px}
+.word-romaji strong{font-weight:800}
+.word-meaning{font-size:.88rem;color:#333}
+.example-box{background:#FFF6E9;border-radius:10px;padding:12px 14px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:10px}
+.example-box:first-of-type{margin-top:0}
+.example-text{flex:1}.example-ja{font-size:1rem;font-weight:700;color:#1A1F40;margin-bottom:4px}
+.st{color:#2B3261;text-decoration:underline;text-decoration-color:#806B50;text-underline-offset:3px}
+.example-rom{font-size:.78rem;font-style:italic;color:#806B50;margin-bottom:4px}
+.example-tr{font-size:.82rem;color:#333}
+.example-listen{background:#806B50;border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;color:#fff;font-size:.85rem}
+.example-listen:hover{opacity:.85}
+.note-text{font-size:.86rem;color:#333;line-height:1.65}
+.footer{text-align:center;color:#b8bdd0;font-size:.7rem;padding:20px 16px}
+.footer a{color:#b8bdd0}
+body.ar .card{direction:rtl;text-align:right}
+body.ar .card-reading,body.ar .word-row,body.ar .example-box{flex-direction:row-reverse}
+body.ar .example-text{text-align:right}
+body.ar .word-listen-btn{margin-left:0;margin-right:auto}
+body.ar .note-text[dir=ltr]{text-align:left;direction:ltr}
+body.ar .example-ja,body.ar .example-rom,body.ar .word-romaji,body.ar .reading-value,body.ar .word-text,body.ar .ref-line{direction:ltr;unicode-bidi:isolate;text-align:right}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-kanji">議</div>
+  <div class="header-meta">20 strokes <span class="jlpt">JLPT N3</span><div class="header-group"><a href="../index.html">G5 · Society, Government &amp; Organizations</a></div></div>
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="switchLang('en',this)">EN</button>
+  <button class="lang-btn" onclick="switchLang('es',this)">ES</button>
+  <button class="lang-btn" onclick="switchLang('zh',this)">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="switchLang('ar',this)">العربية</button>
+</div>
+<div class="content">
+  <div class="core-meaning"><span class="cm-quote">"</span><span id="cm-text">deliberation / discussion</span><span class="cm-quote">"</span></div>
+  <div class="so-section">
+    <div class="so-label" id="lbl-so">STROKE ORDER</div>
+    <div class="so-wrap">
+      <div class="so-video-box"><style id="anim-css">.s0{stroke-dasharray:60;stroke-dashoffset:60;animation:drw0 0.60s ease-in-out 0.00s forwards}@keyframes drw0{to{stroke-dashoffset:0}}.s1{stroke-dasharray:60;stroke-dashoffset:60;animation:drw1 0.60s ease-in-out 0.72s forwards}@keyframes drw1{to{stroke-dashoffset:0}}.s2{stroke-dasharray:60;stroke-dashoffset:60;animation:drw2 0.60s ease-in-out 1.44s forwards}@keyframes drw2{to{stroke-dashoffset:0}}.s3{stroke-dasharray:60;stroke-dashoffset:60;animation:drw3 0.60s ease-in-out 2.16s forwards}@keyframes drw3{to{stroke-dashoffset:0}}.s4{stroke-dasharray:60;stroke-dashoffset:60;animation:drw4 0.60s ease-in-out 2.88s forwards}@keyframes drw4{to{stroke-dashoffset:0}}.s5{stroke-dasharray:60;stroke-dashoffset:60;animation:drw5 0.60s ease-in-out 3.60s forwards}@keyframes drw5{to{stroke-dashoffset:0}}.s6{stroke-dasharray:60;stroke-dashoffset:60;animation:drw6 0.60s ease-in-out 4.32s forwards}@keyframes drw6{to{stroke-dashoffset:0}}.s7{stroke-dasharray:60;stroke-dashoffset:60;animation:drw7 0.60s ease-in-out 5.04s forwards}@keyframes drw7{to{stroke-dashoffset:0}}.s8{stroke-dasharray:60;stroke-dashoffset:60;animation:drw8 0.60s ease-in-out 5.76s forwards}@keyframes drw8{to{stroke-dashoffset:0}}.s9{stroke-dasharray:60;stroke-dashoffset:60;animation:drw9 0.60s ease-in-out 6.48s forwards}@keyframes drw9{to{stroke-dashoffset:0}}.s10{stroke-dasharray:60;stroke-dashoffset:60;animation:drw10 0.60s ease-in-out 7.20s forwards}@keyframes drw10{to{stroke-dashoffset:0}}.s11{stroke-dasharray:60;stroke-dashoffset:60;animation:drw11 0.60s ease-in-out 7.92s forwards}@keyframes drw11{to{stroke-dashoffset:0}}.s12{stroke-dasharray:63;stroke-dashoffset:63;animation:drw12 0.60s ease-in-out 8.64s forwards}@keyframes drw12{to{stroke-dashoffset:0}}.s13{stroke-dasharray:60;stroke-dashoffset:60;animation:drw13 0.60s ease-in-out 9.36s forwards}@keyframes drw13{to{stroke-dashoffset:0}}.s14{stroke-dasharray:69;stroke-dashoffset:69;animation:drw14 0.60s ease-in-out 10.08s forwards}@keyframes drw14{to{stroke-dashoffset:0}}.s15{stroke-dasharray:60;stroke-dashoffset:60;animation:drw15 0.60s ease-in-out 10.80s forwards}@keyframes drw15{to{stroke-dashoffset:0}}.s16{stroke-dasharray:60;stroke-dashoffset:60;animation:drw16 0.60s ease-in-out 11.52s forwards}@keyframes drw16{to{stroke-dashoffset:0}}.s17{stroke-dasharray:86;stroke-dashoffset:86;animation:drw17 0.60s ease-in-out 12.24s forwards}@keyframes drw17{to{stroke-dashoffset:0}}.s18{stroke-dasharray:60;stroke-dashoffset:60;animation:drw18 0.60s ease-in-out 12.96s forwards}@keyframes drw18{to{stroke-dashoffset:0}}.s19{stroke-dasharray:60;stroke-dashoffset:60;animation:drw19 0.60s ease-in-out 13.68s forwards}@keyframes drw19{to{stroke-dashoffset:0}}</style>
+<svg id="ksv" viewBox="0 0 109 109" style="width:100%;height:100%">
+  <rect width="109" height="109" fill="#fff"/>
+  <path d="M23.75,15.5c2.38,1.46,6.15,5.98,6.75,8.25" class="stroke s0"/>
+<path d="M11.37,34.08c0.63,0.23,3.03,0.26,3.67,0.23C22.25,34,31,32.25,38.93,31.19c1.05-0.14,2.64,0.11,3.16,0.23" class="stroke s1"/>
+<path d="M17.98,47.56c0.99,0.31,2.38,0.14,3.39,0.06c3.67-0.29,8.73-1.4,12.76-1.89c1.15-0.14,2.36-0.21,3.51,0.01" class="stroke s2"/>
+<path d="M18.48,60.08c1.1,0.38,2.76,0.14,3.91,0.05c3.19-0.23,7.37-0.93,10.76-1.41c1.19-0.17,2.69-0.5,3.88-0.26" class="stroke s3"/>
+<path d="M17.14,73.65c0.77,0.68,1.16,1.78,1.17,2.81c0.7,3.43,1.4,8.21,2.1,12.78c0.2,1.28,0.39,2.55,0.59,3.76" class="stroke s4"/>
+<path d="M19.31,74.37c6.44-0.89,11.23-2.1,17.17-3c1.49-0.22,2.39,1.04,2.18,2.06c-0.89,4.25-1.66,6.72-3.24,13.78" class="stroke s5"/>
+<path d="M21.72,90.3c3.89-0.44,7.44-0.97,12.16-1.6c1.11-0.15,2.28-0.3,3.54-0.46" class="stroke s6"/>
+<path d="M50.93,13.95c2.58,1.52,6.67,6.23,7.32,8.59" class="stroke s7"/>
+<path d="M76.38,9.25c0.02,0.35,0.09,1.16-0.04,1.65c-0.83,3.1-2.8,7.38-6.12,11.27" class="stroke s8"/>
+<path d="M49.06,27.75c1.81,0.37,4.15,0.29,5.57,0.03c6.06-1.14,17.68-3.27,23.88-3.99c1.63-0.19,3.66-0.46,5.27-0.02" class="stroke s9"/>
+<path d="M65.28,27.21c0.94,0.94,1.22,2.29,1.22,3.72c0,2.82-0.14,7.44-0.14,11.75" class="stroke s10"/>
+<path d="M51.3,36.49c2.08,0.39,4.1,0.1,5.62-0.13c5.23-0.81,14.22-2.28,19.35-2.78c1.52-0.15,3.17-0.35,4.68,0.06" class="stroke s11"/>
+<path d="M45.78,45.82c2.47,0.56,5.42,0.23,7.59-0.1c7.12-1.09,21.41-3.3,30.14-4.24c2.49-0.27,5-0.71,7.47-0.11" class="stroke s12"/>
+<path d="M56.76,50.12c0.12,0.63-0.05,1.28-0.35,1.64c-1.96,2.39-5.6,5.52-12.66,8.73" class="stroke s13"/>
+<path d="M43.22,65.89c2.66,0.61,5.89,0.36,8.56-0.05c8.24-1.26,22.23-4.44,32.84-5.7c2.63-0.31,5.06-0.53,7.66,0.07" class="stroke s14"/>
+<path d="M55.01,56.65c0.07,0.28,0.95,1.47,0.95,3.27c0,10.95-0.08,28.88-0.08,32.7c0,5.12-4.32,1.15-6.7-0.4" class="stroke s15"/>
+<path d="M44.88,82.88c1.25,0.62,2.49,0.25,3.25-0.28c0.76-0.51,11.48-8.71,14.69-11.18" class="stroke s16"/>
+<path d="M67.81,47.99c1.53,1.57,2.33,3.38,2.6,5.51c2.34,18.31,10.69,35.73,22.11,43.33c4.04,2.68,4.44-1.05,3.93-5.7" class="stroke s17"/>
+<path d="M84.87,66.62c0.06,0.59,0.12,1.54-0.11,2.39c-1.39,5.04-9.03,16.67-19.91,23.45" class="stroke s18"/>
+<path d="M77.88,47.38c2.31,1.27,5.99,4.16,7.07,6.33" class="stroke s19"/>
+
+</svg></div>
+      <div class="so-controls">
+        <button class="so-btn play"  onclick="soPlay()"   id="btn-play">▶ Play</button>
+        <button class="so-btn pause" onclick="soPause()"  id="btn-pause">⏸ Pause</button>
+        <button class="so-btn replay" onclick="soReplay()"id="btn-replay">↺ Replay</button>
+      </div>
+    </div>
+  </div>
+<div class="card on-card" data-card="1" data-type="ON">
+    <div class="card-lang-label lbl-on">音読み · On reading</div>
+    <div class="card-reading">
+      <div class="reading-col"><div class="reading-value">ギ <span class="reading-rom">(gi)</span></div></div>
+      <button class="listen-btn" data-tts="ギ" onclick="speak(this.dataset.tts)"><span class="lbl-listen">🔊 Listen</span></button>
+    </div>
+    <div class="section-label lbl-word">単語 · Word</div>
+    <div class="vrow" data-word="会議">
+      <div class="word-row"><span class="word-text"><span class="ko">会</span><span class="ks on-s">議</span></span>
+        <button class="word-listen-btn" data-tts="会議" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><span class="ko">kai</span><strong class="on-s">gi</strong></div>
+      <div class="word-meaning" id="vm-c1w0">meeting</div>
+    </div>
+    <div class="section-label lbl-ex">例文 · Example</div>
+    <div class="example-box"><div class="example-text">
+        <div class="example-ja">午後三時から会<span class="st">議</span>があります。</div>
+        <div class="example-rom">Gogo sanji kara kaigi ga arimasu.</div>
+        <div class="example-tr" id="sent-c1">There is a meeting from three o&#x27;clock in the afternoon.</div></div>
+      <button class="example-listen" data-tts="午後三時から会議があります。" onclick="speak(this.dataset.tts)" title="Listen">🔊</button>
+    </div>
+  </div>
+<div class="card on-card more-card" data-card="2" data-type="MORE_EXAMPLES">
+    <div class="card-lang-label lbl-more">More Examples</div>
+    <div class="vrow" data-word="議会">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">議</span><span class="ko">会</span></span>
+        <button class="word-listen-btn" data-tts="議会" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">gi</strong><span class="ko">kai</span></div>
+      <div class="word-meaning" id="vm-c2w0">assembly / parliament</div>
+    </div>
+    <div class="vrow" data-word="議長">
+      <div class="word-row"><span class="word-text"><span class="ks on-s">議</span><span class="ko">長</span></span>
+        <button class="word-listen-btn" data-tts="議長" onclick="speak(this.dataset.tts)">🔊</button></div>
+      <div class="word-romaji"><strong class="on-s">gi</strong><span class="ko">chou</span></div>
+      <div class="word-meaning" id="vm-c2w1">chairperson / chair</div>
+    </div>
+  </div>
+<div class="card note-card">
+    <div class="card-lang-label lbl-note">ポイント · Notes</div>
+    <div class="note-text" id="note-text">会議（かいぎ） is a meeting, at work or elsewhere. 議会（ぎかい）, with the same two kanji in reverse order, is an assembly or parliament. 議長（ぎちょう） is the person who chairs a meeting or assembly.</div>
+  </div>
+
+</div>
+<div class="footer" id="footer-txt">Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio</div>
+<script>
+const MEANING={"en": "deliberation / discussion", "es": "deliberación / discusión", "zh": "审议 / 讨论", "ko": "의논 / 토의", "ar": "مداولة / نقاش"},VOC={"c1w0": {"en": "meeting", "es": "reunión", "zh": "会议", "ko": "회의", "ar": "اجتماع"}, "c2w0": {"en": "assembly / parliament", "es": "asamblea / parlamento", "zh": "议会", "ko": "의회", "ar": "مجلس / برلمان"}, "c2w1": {"en": "chairperson / chair", "es": "presidente (de una reunión) / moderador", "zh": "主席 / 议长", "ko": "의장", "ar": "رئيس الجلسة"}},SEN={"c1": {"en": "There is a meeting from three o'clock in the afternoon.", "es": "Hay una reunión a partir de las tres de la tarde.", "zh": "下午三点开始有会议。", "ko": "오후 세 시부터 회의가 있습니다.", "ar": "هناك اجتماع ابتداءً من الساعة الثالثة بعد الظهر."}},NOTE={"en": "会議（かいぎ） is a meeting, at work or elsewhere. 議会（ぎかい）, with the same two kanji in reverse order, is an assembly or parliament. 議長（ぎちょう） is the person who chairs a meeting or assembly.", "es": "会議（かいぎ） es una reunión, en el trabajo o en otro lugar. 議会（ぎかい）, con los mismos dos kanji en orden inverso, es una asamblea o un parlamento. 議長（ぎちょう） es la persona que preside una reunión o una asamblea.", "zh": "会議（かいぎ）指会议，无论是工作中的还是其他场合的。議会（ぎかい）由同样的两个汉字倒过来组成，指议会。議長（ぎちょう）指主持会议或议会的人。", "ko": "会議(かいぎ)는 직장 등에서 하는 회의입니다. 같은 두 한자를 거꾸로 쓴 議会(ぎかい)는 의회입니다. 議長(ぎちょう)는 회의나 의회를 주재하는 사람입니다.", "ar": "会議（かいぎ） هو اجتماع، في العمل أو في غيره. أما 議会（ぎかい）، المكوّن من حرفَي الكانجي نفسيهما بترتيب معكوس، فهو مجلس أو برلمان. و議長（ぎちょう） هو الشخص الذي يرأس الاجتماع أو المجلس."};
+const L={
+  so:{"en":"STROKE ORDER","es":"ORDEN DE TRAZOS","zh":"笔画顺序","ko":"획순","ar":"ترتيب الضربات"},
+  play:{"en":"▶ Play","es":"▶ Reproducir","zh":"▶ 播放","ko":"▶ 재생","ar":"▶ تشغيل"},
+  pause:{"en":"⏸ Pause","es":"⏸ Pausar","zh":"⏸ 暂停","ko":"⏸ 일시정지","ar":"⏸ إيقاف"},
+  replay:{"en":"↺ Replay","es":"↺ Repetir","zh":"↺ 重播","ko":"↺ 다시보기","ar":"↺ إعادة"},
+  on_lbl:{"en":"音読み · On reading","es":"音読み · Lectura On","zh":"音読み · 音读","ko":"音読み · 온독","ar":"قراءة أون · 音読み"},
+  kun_lbl:{"en":"訓読み · Kun reading","es":"訓読み · Lectura Kun","zh":"訓読み · 训读","ko":"訓読み · 훈독","ar":"قراءة كون · 訓読み"},
+  word:{"en":"単語 · Word","es":"単語 · Palabra","zh":"単語 · 单词","ko":"単語 · 단어","ar":"كلمة · 単語"},
+  more:{"en":"More Examples","es":"Más ejemplos","zh":"更多例子","ko":"더 많은 예","ar":"المزيد من الأمثلة"},
+  ex:{"en":"例文 · Example","es":"例文 · Oración","zh":"例文 · 例句","ko":"例文 · 예문","ar":"مثال · 例文"},
+  note:{"en":"ポイント · Notes","es":"ポイント · Notas","zh":"ポイント · 要点","ko":"ポイント · 포인트","ar":"ملاحظات · ポイント"},
+  listen:{"en":"🔊 Listen","es":"🔊 Escuchar","zh":"🔊 听","ko":"🔊 듣기","ar":"🔊 استمع"},
+  footer:{"en":"Stroke data: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Made with ❤ by Between Line Studio","es":"Datos de trazos: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Creado con ❤ por Between Line Studio","zh":"笔画数据：KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 制作","ko":"획 데이터: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · Between Line Studio 제작","ar":"بيانات الضربات: KanjiVG © Ulrich Apel (CC BY-SA 3.0) · صُنع بـ ❤ من Between Line Studio"}
+};
+const $=id=>document.getElementById(id);
+function set(id,v){const el=$(id);if(el&&v!=null)el.textContent=v;}
+function setAll(sel,v){document.querySelectorAll(sel).forEach(el=>{if(v!=null)el.textContent=v;});}
+function switchLang(lang,btn){
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.body.className=lang==='ar'?'ar':'';
+  set('cm-text',MEANING[lang]);
+  for(const k in VOC) set('vm-'+k,VOC[k][lang]);
+  for(const k in SEN) set('sent-'+k,SEN[k][lang]);
+  {const el=$('note-text'); if(el){ el.dir=(lang==='ar' && NOTE.ar!==NOTE.en)?'rtl':'ltr'; if(lang==='ar' && NOTE.ar!==NOTE.en){ const t=document.createElement('div'); t.textContent=NOTE[lang];
+      el.innerHTML=t.innerHTML.replace(/[0-9０-９]*[぀-ヿ一-鿿～ー][0-9０-９぀-ヿ一-鿿～ー（）]*(?:\s*[+＋]\s*[぀-ヿ一-鿿～ー（）]+)*/g,m=>'<span dir="ltr" style="unicode-bidi:isolate;white-space:nowrap">'+m+'</span>'); }
+    else el.textContent=NOTE[lang]; }}
+  set('lbl-so',L.so[lang]);
+  set('btn-play',L.play[lang]); set('btn-pause',L.pause[lang]); set('btn-replay',L.replay[lang]);
+  setAll('.lbl-on',L.on_lbl[lang]); setAll('.lbl-kun',L.kun_lbl[lang]);
+  setAll('.lbl-more',L.more[lang]); setAll('.lbl-word',L.word[lang]);
+  setAll('.lbl-ex',L.ex[lang]); setAll('.lbl-note',L.note[lang]);
+  setAll('.lbl-listen',L.listen[lang]);
+  set('footer-txt',L.footer[lang]);
+}
+function speak(t){
+  if(!t||t==='—'||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();
+  const go=()=>{const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';u.rate=0.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang.startsWith('ja'));
+    if(v)u.voice=v; speechSynthesis.speak(u);};
+  speechSynthesis.getVoices().length?go():speechSynthesis.addEventListener('voiceschanged',go,{once:true});
+}
+const getSVG=()=>$('ksv');
+function soPlay(){if(getSVG())getSVG().classList.remove('paused');}
+function soPause(){if(getSVG())getSVG().classList.add('paused');}
+function soReplay(){
+  const s=getSVG(); if(!s)return;
+  const c=s.cloneNode(true); s.parentNode.replaceChild(c,s); c.id='ksv';
+  const css=$('anim-css'); if(css){const c2=css.cloneNode(true);css.parentNode.replaceChild(c2,css);c2.id='anim-css';}
+}
+window.addEventListener('load',()=>{if(getSVG())getSVG().classList.remove('paused');});
+</script>
+</body>
+</html>
